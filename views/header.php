@@ -1,3 +1,8 @@
+<?php
+  // Page variable must be set
+  if(!isset($page))
+    $page = '';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,15 +25,18 @@
     <![endif]-->
     <script type="text/javascript">
       $(document).ready(function() { 
-        // Sets up the select boxes on the top of the main page
+        // Sets up the select boxes on the top of the main page and handles their submit
         $("#sel-users, #sel-projects").select2({width: '250px'})
-          .on('change', function(e){       
-            
+          .on('change', function(e){                   
             var value = $(this).val();
+            
+            if(value.length < 1)
+              return;
+            
             var url = $(this).attr('name');
             
             window.location = url+'/'+value;
-          }); 
+          });
         
         // Adds clicks to the project string rows
         $('.recentprojects tr td').css('cursor','pointer').click(function(){       
@@ -42,7 +50,7 @@
   </head>
   <body>
     <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation" autocomplete="off">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -51,11 +59,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">EZTC<span>\ˈē-zē tē sē\</span></a>
+          <a class="navbar-brand" href="/EZTC/">EZTC<span>\ˈē-zē tē sē\</span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li <?php if($page == 'home') echo 'class="active"'; ?>><a href="/EZTC/">Home</a></li>
             <!-- <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
