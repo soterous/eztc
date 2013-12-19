@@ -1,0 +1,88 @@
+.navbar-brand {
+  padding-bottom: 0px;
+}
+
+.navbar-brand span {
+  display:block; 
+  font-style: italic; 
+  font-weight:normal; 
+  font-size:0.5em;
+  line-height: 1em;
+}
+
+.control-label.nopadding {
+  padding-top: 0;
+}
+
+a.disabled {
+  text-decoration: none;
+  color: black;
+}
+
+.panel-title span {
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+/* Details page */
+.details-title h3{
+  line-height: 33px;
+}
+
+.project-details .col-sm-10 {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* Calendar */
+.calendar {
+  overflow: hidden;
+  border-bottom: 1px solid #D9EDF7;
+  background-color: #D9EDF7;
+}
+
+.calendar:last-child {
+  border-bottom: 0px solid black;
+}
+
+/* Calendar Cell */
+.calendar > div {
+  border: 1px solid #DDD;
+  border-width: 0 1px 1px 0;
+  float: left;
+  display: block;
+  width: 51.7px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  line-height: 24px;
+  background-color: white;
+}
+
+/* Month */
+.calendar > div:first-child {
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 50px;
+}
+
+/* Total */
+.calendar > div:last-child {
+  float: right;
+  background-color: #DFF0D8;
+}
+.calendar > div:last-child  span{
+  text-decoration: underline;  
+}
+
+/* Date */
+.calendar > div > span{
+  display: block;
+  border-bottom: 1px solid #DDD;
+  font-weight: bold;
+}
+
+.table.forceborders  td{
+  border-top: 1px solid #DDD !important;
+}
