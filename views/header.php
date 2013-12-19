@@ -22,8 +22,12 @@
       $(document).ready(function() { 
         // Sets up the select boxes on the top of the main page
         $("#sel-users, #sel-projects").select2({width: '250px'})
-          .on('change', function(e){          
-            $(this).parents('form').first().submit();
+          .on('change', function(e){       
+            
+            var value = $(this).val();
+            var url = $(this).attr('name');
+            
+            window.location = url+'/'+value;
           }); 
         
         // Adds clicks to the project string rows
@@ -78,11 +82,11 @@
         <h1>Easy Timeclock</h1>
         
         
-        <form class="form-horizontal" role="form" action="details.php" method="GET">
+        <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-sm-4 control-label nopadding">View details for employee:</label>
             <div class="col-sm-8">
-              <select id="sel-users" name="u" data-placeholder="Select an Employee">
+              <select id="sel-users" name="user" data-placeholder="Select an Employee">
                 <option selected="selected"></option>
                 <option value="Dennis">Skinner, Dennis</option>
                 <option value="Kris">Howard, Kris</option>
@@ -92,11 +96,11 @@
           </div>
         </form>
         
-        <form class="form-horizontal" role="form" action="details.php" method="GET">
+        <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-sm-4 control-label nopadding">View details for project:</label>
             <div class="col-sm-8">
-              <select id="sel-projects" name="p" data-placeholder="Select a project">
+              <select id="sel-projects" name="project" data-placeholder="Select a project">
                 <option selected="selected"></option>
                 <option value="Dennis">Skinner, Dennis</option>
                 <option value="Kris">Howard, Kris</option>
