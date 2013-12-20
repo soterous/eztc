@@ -24,6 +24,10 @@ var eztcServerUrl = 'http://localhost/EZTC/update';
 
 // Wait for load
 $(window).load(function () {
+
+  // Verify we're on the correct screen
+  if($('#appOptionsDivopenTS').length < 1) 
+    return;
     
   // Add Click event to the save button to trigger the data push
   $('#appOptionsImgsaveTS').click(function(){
