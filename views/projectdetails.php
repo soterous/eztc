@@ -4,14 +4,14 @@ require_once('header.php');
 ?>  
     <div class="container">
       <div class="row details-title">
-        <div class="col-sm-8"><h2><?php echo $user /*this is a XSS vuln, don't keep this here */ ?></h2></div>
-        <div class="col-sm-4"><h3>Charge Rate: $23</h3></div>
+        <div class="col-sm-8"><h2><?php echo $project /*this is a XSS vuln, don't keep this here */ ?></h2></div>
+        <div class="col-sm-4">&nbsp;</div>
       </div>
     
       <div class="panel panel-info project-details">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-sm-10">PROJECT STRING GOES HERE</div>
+            <div class="col-sm-10">Smith, John</div>
             <div class="col-sm-2">Total hours: 80</div>
           </div>
         </div>
@@ -91,7 +91,7 @@ require_once('header.php');
       <div class="panel panel-info project-details">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-sm-10">INDIR.0001.MOBI.PILO</div>
+            <div class="col-sm-10">Foo, Bar</div>
             <div class="col-sm-2">Total hours: 80</div>
           </div>
         </div>

@@ -35,12 +35,12 @@
             
             var url = $(this).attr('name');
             
-            window.location = url+'/'+value;
+            window.location = '<?php echo $GlobalRoot; ?>' + url + '/'+value;
           });
         
         // Adds clicks to the project string rows
         $('.recentprojects tr td').css('cursor','pointer').click(function(){       
-          window.location = $(this).parent().find('a').attr('href');
+          window.location = '<?php echo $GlobalRoot; ?>' + $(this).parent().find('a').attr('href');
         })
         .mouseenter(function(){$(this).siblings().andSelf().css('text-decoration', 'underline')})
         .mouseleave(function(){$(this).siblings().andSelf().css('text-decoration', 'none')});
@@ -118,9 +118,9 @@
             <div class="col-sm-8">
               <select id="sel-projects" name="project" data-placeholder="Select a project">
                 <option selected="selected"></option>
-                <option value="Dennis">Skinner, Dennis</option>
-                <option value="Kris">Howard, Kris</option>
-                <option value="Shane">White, Shane</option>
+                <option value="INDIR001.0001.00001">INDIR001.0001.00001</option>
+                <option value="INDIR001.0001.22222">INDIR001.0001.22222</option>
+                <option value="INDIR001.0001.33333">INDIR001.0001.33333</option>
               </select>
             </div>
           </div>

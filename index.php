@@ -4,22 +4,25 @@ require 'flight/Flight.php';
 // Set this to the global application root path
 Flight::view()->set('GlobalRoot', GlobalRoot());
 
+/**************
+    ROUTES
+***************/
 Flight::route('/submit', function($user){
   
 });
 
 Flight::route('/user/@user', function($user){
-  Flight::render('userdetails', array('page' => 'userdetails'));  
+  Flight::render('userdetails', array('user' => $user, 'page' => 'userdetails'));  
 });
 
-Flight::route('/project/@user', function($user){
-  Flight::render('projectdetails', array('page' => 'projectdetails'));
+Flight::route('/project/@project', function($project){
+  Flight::render('projectdetails', array('project' => $project, 'page' => 'projectdetails'));
 });
 
+// catchall home
 Flight::route('*', function(){
   Flight::render('home', array('page' => 'home'));
 });
-
 
 Flight::start();
 
