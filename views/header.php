@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/select2.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+    <link href="<?php echo $GlobalRoot; ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $GlobalRoot; ?>css/select2.css" rel="stylesheet">
+    <link href="<?php echo $GlobalRoot; ?>css/main.css" rel="stylesheet">
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -64,6 +64,14 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li <?php if($page == 'home') echo 'class="active"'; ?>><a href="/EZTC/">Home</a></li>
+            <?php if($page == 'userdetails') { ?>
+            <li class="active"><a href="#">User Details</a></li>
+            <?php } ?>
+            <?php if($page == 'projectdetails') { ?>
+            <li class="active"><a href="#">Project Details</a></li>
+            <?php } ?>
+            
+            
             <!-- <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
