@@ -23,6 +23,7 @@ Flight::route('/project/@project', function($project){
 Flight::route('POST /update', function(){
   //debug
   echo print_r(Flight::request()->data);
+  file_put_contents('dump.txt', print_r(Flight::request()->data, true));
 });
 
 // catchall home
