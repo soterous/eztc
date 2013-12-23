@@ -1,6 +1,6 @@
 <?php
 
-$json = json_decode($jason, true);
+//$json = json_decode($jason, true);
 // Connection Variables
 $host = "localhost";
 $user = "root";

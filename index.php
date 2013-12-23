@@ -23,6 +23,9 @@ Flight::route('/project/@project', function($project){
 Flight::route('POST /update', function(){
   //debug
   file_put_contents('dump.txt', print_r(Flight::request()->data, true));
+  
+  $json = Flight::request()->data;
+  require 'updateApi.php';
 });
 
 // catchall home
