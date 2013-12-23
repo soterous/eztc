@@ -7,10 +7,6 @@ Flight::view()->set('GlobalRoot', GlobalRoot());
 /**************
     ROUTES
 ***************/
-Flight::route('/submit', function($user){
-  
-});
-
 Flight::route('/user/@user', function($user){
   Flight::render('userdetails', array('user' => $user, 'page' => 'userdetails'));  
 });
@@ -20,10 +16,7 @@ Flight::route('/project/@project', function($project){
 });
 
 // This is for the GM script to push to
-Flight::route('POST /update', function(){
-  //debug
-  file_put_contents('dump.txt', print_r(Flight::request()->data, true));
-  
+Flight::route('POST /update', function(){ 
   $json = Flight::request()->data;
   require 'updateApi.php';
 });

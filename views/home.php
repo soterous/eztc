@@ -18,13 +18,13 @@ $qRecentProjects = "SELECT `Project`.`Code` AS `Code`, SUM(`TimeEntry`.`Hours`) 
             </tr>
           </thead>
           <tbody>
-            <?
+            <?php
             if (!$result = $mysqli->query($qRecentProjects)){
               ?>
               <tr>
                 <td span="3">Unable to run query! <?$mysqli->error?></td>
               </tr>
-              <?
+              <?php
             } else {
               $counter = 1;
               while($row = $result->fetch_assoc()){
