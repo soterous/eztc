@@ -1,6 +1,69 @@
 <?php
-
 require_once('header.php');
+
+$qUserProjects = "SELECT `project`.`Code` as Code, `timeentry`.`Hours` as Hours, `timeentry`.`Date` as Date FROM timeentry LEFT JOIN project ON `timeentry`.`ProjectId` = `project`.`Id` LEFT 
+JOIN employee ON `timeentry`.`EmployeeId` = `employee`.`Id` WHERE `employee`.`Name` = ? Order By `timeentry`.`Date`;";
+ 
+// Get instance of statement
+$stmt = $mysqli->stmt_init();
+// Pull all the user's projects and entries
+$stmt->prepare($qUserProjects) or die("Couldn't prepare user project query");
+$stmt->bind_param("s", $user);
+$stmt->execute();
+$res = $stmt->get_result() or die("Could not get results for user project query");
+
+$data = array();
+
+/* This properly formats our $data so we can use it easier
+ * Basic structure is something like this:
+ * Array
+  (
+    [INDIR.0001.UTRI.LABV] => Array
+    (
+      [TotalHours] => 32
+      [Dates] => Array
+      (
+        [2013-12-16] => 8
+        [2013-12-17] => 8
+        [2013-12-18] => 8
+        [2013-12-19] => 8
+        [2013-12-20] => 0
+        [2013-12-21] => 0
+        [2013-12-22] => 0
+        [2013-12-23] => 0
+        [2013-12-24] => 0
+        [2013-12-25] => 0
+        [2013-12-26] => 0
+        [2013-12-27] => 0
+        [2013-12-28] => 0
+        [2013-12-29] => 0
+        [2013-12-30] => 0
+        [2013-12-31] => 0
+      )
+    )
+  )
+*/
+while($row = $res->fetch_array(MYSQLI_ASSOC)) {
+  //print var_dump($row);
+  
+  // Initialize this project's entry if it doesn't exist
+  if(!array_key_exists($row['Code'], $data))
+    $data[$row['Code']] = array('TotalHours' => 0, 'Dates' => array());
+    
+  // add hours
+  $data[$row['Code']]['TotalHours'] += $row['Hours'];
+  
+  // Add the Date and Hours to the project entry
+  $data[$row['Code']]['Dates'][$row['Date']] = $row['Hours'];
+  
+}
+
+// DEBUG
+print '<pre>'.print_r($data, true).'</pre>';
+
+foreach($data as $projectCode => ) {
+  var_dump($project);
+}
 ?>  
     <div class="container">
       <div class="row details-title">

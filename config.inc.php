@@ -1,13 +1,13 @@
 <?php
 // Common MySQL Setup
 // Connection Variables
-$host = "localhost";
-$user = "root";
-$password = "root";
-$database = "eztc";
+$dbHost = "localhost";
+$dbUser = "root";
+$dbPassword = "root";
+$dbDatabase = "eztc";
 
 // Create connection
-$mysqli= new mysqli($host, $user, $password, $database);
+$mysqli= new mysqli($dbHost, $dbUser, $dbPassword, $dbDatabase);
 
 // Check connection
 if ($mysqli->connect_error) {
