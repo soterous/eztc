@@ -61,7 +61,8 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
 // DEBUG
 print '<pre>'.print_r($data, true).'</pre>';
 
-foreach($data as $projectCode => ) {
+foreach($data as $projectCode => $project) {
+  echo $projectCode . "\n";
   var_dump($project);
 }
 ?>  
