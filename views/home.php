@@ -1,7 +1,7 @@
 <?php
-
-
 require_once('header.php');
+
+$qRecentProjects = "SELECT `Project`.`Code` AS `Code`, SUM(`TimeEntry`.`Hours`) AS `Hours` FROM `TimeEntry` LEFT JOIN `Project` ON `TimeEntry`.`ProjectId`=`Project`.`Id` GROUP BY `Project`.`Code` ORDER BY `TimeEntry`.`LastUpdated` DESC LIMIT 5";
 ?>  
     <div class="container">
       <div class="panel panel-info">
@@ -18,16 +18,26 @@ require_once('header.php');
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><a href="project/123456789" class="disabled">1</a></td>
-              <td>123456789</td>
-              <td>20</td>
-            </tr>
-            <tr>
-              <td><a href="project/ABCDEFG" class="disabled">2</a></td>
-              <td>ABCDEFG</td>
-              <td>76</td>
-            </tr>
+            <?
+            if (!$result = $mysqli->query($qRecentProjects)){
+              ?>
+              <tr>
+                <td span="3">Unable to run query! <?$mysqli->error?></td>
+              </tr>
+              <?
+            } else {
+              $counter = 1;
+              while($row = $result->fetch_assoc()){
+                echo '<tr>';
+                echo '<td><a href="project/' . $row["Code"] . '" class="disabled">' . $counter . '</a></td>';
+                echo '<td>' . $row["Code"] . '</td>';
+                echo '<td>' . $row["Hours"] . '</td>';
+                echo '</tr>';
+
+                $counter++;
+              }
+            }
+            ?>
           </tbody>
         </table>
       </div>

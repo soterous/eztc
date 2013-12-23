@@ -2,6 +2,25 @@
   // Page variable must be set
   if(!isset($page))
     $page = '';
+
+  // Common MySQL Setup
+  // Connection Variables
+  $host = "localhost";
+  $user = "root";
+  $password = "root";
+  $database = "eztc";
+
+  // Create connection
+  $mysqli= new mysqli($host, $user, $password, $database);
+
+  // Check connection
+  if ($mysqli->connect_error) {
+      die('Connect Error (' . $mysqli->connect_errno . ') '
+              . $mysqli->connect_error);
+  }
+
+  // Get instance of statement
+  $stmt = $mysqli->stmt_init();
 ?>
 <!DOCTYPE html>
 <html>
