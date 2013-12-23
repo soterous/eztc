@@ -14,7 +14,7 @@
 // ==/UserScript==
 
 // Config
-var eztcServerUrl = 'http://localhost/EZTC/update';
+var eztcServerUrl = 'http://localhost/eztc/update';
 
 //////////////////// DO NOT EDIT PAST THIS LINE ////////////////////
 /* CHANGELOG

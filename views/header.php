@@ -36,15 +36,7 @@
             var url = $(this).attr('name');
             
             window.location = '<?php echo $GlobalRoot; ?>' + url + '/'+value;
-          });
-        
-        // Adds clicks to the project string rows
-        $('.recentprojects tr td').css('cursor','pointer').click(function(){       
-          window.location = '<?php echo $GlobalRoot; ?>' + $(this).parent().find('a').attr('href');
-        })
-        .mouseenter(function(){$(this).siblings().andSelf().css('text-decoration', 'underline')})
-        .mouseleave(function(){$(this).siblings().andSelf().css('text-decoration', 'none')});
-        
+          });       
       });
     </script>
   </head>
@@ -59,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">EZTC<span>\ˈē-zē tē sē\</span></a>
+          <a class="navbar-brand" href="<?php echo $GlobalRoot; ?>">EZTC<span>\ˈē-zē tē sē\</span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

@@ -19,6 +19,12 @@ Flight::route('/project/@project', function($project){
   Flight::render('projectdetails', array('project' => $project, 'page' => 'projectdetails'));
 });
 
+// This is for the GM script to push to
+Flight::route('POST /update', function(){
+  //debug
+  echo print_r(Flight::request()->data);
+});
+
 // catchall home
 Flight::route('*', function(){
   Flight::render('home', array('page' => 'home'));
@@ -26,7 +32,12 @@ Flight::route('*', function(){
 
 Flight::start();
 
+/**************
+   FUNCTIONS
+***************/
 
+// Figures out what the global root is so we can pass it to the templates to load scripts properly.
+// This is better than hard-coding.
 function GlobalRoot() {
  $pageURL = $_SERVER['REQUEST_SCHEME'];
  $pageURL .= "://";
