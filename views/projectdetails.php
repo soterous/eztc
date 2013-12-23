@@ -1,13 +1,39 @@
 <?php
-
+error_reporting(E_ALL);
 require_once('header.php');
+
+$qProjectDetails = "SELECT `Project`.`Code`, `Employee`.`Name`, `TimeEntry`.`Date`, `TimeEntry`.`Hours`
+                    FROM `TimeEntry` LEFT JOIN `Employee` ON `TimeEntry`.`EmployeeId`=`Employee`.`Id`
+                    LEFT JOIN `Project` ON `TimeEntry`.`ProjectId` = `Project`.`Id` WHERE
+                    `Project`.`Code`= ? ORDER BY `Employee`.`Name`, `TimeEntry`.`Date`";
+
+// Get instance of statement
+$stmt = $mysqli->stmt_init();
+// Grab Project Details
+$stmt->prepare($qProjectDetails) or die("Could not prepare SQL Statement");
+$stmt->bind_param("s", $project);
+echo var_dump($stmt);
+echo "|" . $project . "|";
+
+$stmt->execute();
+$res = $stmt->get_result() or die("Could not get results for user project query");
+
+while ($row = $res->fetch_array(MYSQLI_ASSOC))
+{
+  echo var_dump($row);
+}
+
+
+
+
+
 ?>  
     <div class="container">
       <div class="row details-title">
-        <div class="col-sm-8"><h2><?php echo $project /*this is a XSS vuln, don't keep this here */ ?></h2></div>
+        <div class="col-sm-8"><h2><?php echo $project; /*this is a XSS vuln, don't keep this here */ ?></h2></div>
         <div class="col-sm-4">&nbsp;</div>
       </div>
-    
+      
       <div class="panel panel-info project-details">
         <div class="panel-heading">
           <div class="row">
