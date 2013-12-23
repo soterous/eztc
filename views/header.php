@@ -59,11 +59,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/EZTC/">EZTC<span>\ˈē-zē tē sē\</span></a>
+          <a class="navbar-brand" href="#">EZTC<span>\ˈē-zē tē sē\</span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li <?php if($page == 'home') echo 'class="active"'; ?>><a href="/EZTC/">Home</a></li>
+            <li <?php if($page == 'home') echo 'class="active"'; ?>><a href="<?php echo $GlobalRoot; ?>">Home</a></li>
             <?php if($page == 'userdetails') { ?>
             <li class="active"><a href="#">User Details</a></li>
             <?php } ?>
