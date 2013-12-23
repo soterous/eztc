@@ -3,3 +3,4 @@
     <script src="<?php echo $GlobalRoot; ?>js/select2.min.js"></script>
   </body>
 </html>
+<?php $mysqli->close(); ?>
