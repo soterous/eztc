@@ -39,7 +39,13 @@ Flight::start();
 // Figures out what the global root is so we can pass it to the templates to load scripts properly.
 // This is better than hard-coding.
 function GlobalRoot() {
- $pageURL = $_SERVER['REQUEST_SCHEME'];
+ $pageURL = '';
+ 
+ if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == 'off')
+  $pageURL .= 'http';
+ else
+  $pageURL .= 'https';
+ 
  $pageURL .= "://";
  if ($_SERVER["SERVER_PORT"] != "80") {
   $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
