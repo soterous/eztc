@@ -91,6 +91,9 @@
       <div class="jumbotron">
         <h1>Easy Timeclock</h1>
         
+        <?php      
+          $result = $mysqli->query("SELECT `employee`.`Name` as Name FROM employee Order By Name") or die("User query failed");
+        ?>       
         
         <form class="form-horizontal" role="form">
           <div class="form-group">
@@ -98,13 +101,18 @@
             <div class="col-sm-8">
               <select id="sel-users" name="user" data-placeholder="Select an Employee">
                 <option selected="selected"></option>
-                <option value="Dennis">Skinner, Dennis</option>
-                <option value="Kris">Howard, Kris</option>
-                <option value="Shane">White, Shane</option>
+                <?php 
+                  while($row = $result->fetch_assoc()){ echo '<option value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
+                  $result->close();
+                ?>
               </select>
             </div>
           </div>
         </form>
+        
+        <?php      
+          $result = $mysqli->query("SELECT `project`.`Code` as Name FROM `project` Order By Name") or die("Project query failed");
+        ?>      
         
         <form class="form-horizontal" role="form">
           <div class="form-group">
@@ -112,9 +120,10 @@
             <div class="col-sm-8">
               <select id="sel-projects" name="project" data-placeholder="Select a project">
                 <option selected="selected"></option>
-                <option value="INDIR001.0001.00001">INDIR001.0001.00001</option>
-                <option value="INDIR001.0001.22222">INDIR001.0001.22222</option>
-                <option value="INDIR001.0001.33333">INDIR001.0001.33333</option>
+                <?php 
+                  while($row = $result->fetch_assoc()){ echo '<option value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
+                  $result->close();
+                ?>
               </select>
             </div>
           </div>

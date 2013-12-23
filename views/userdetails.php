@@ -62,7 +62,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
 ?>  
     <div class="container">
       <div class="row details-title">
-        <div class="col-sm-8"><h2><?php echo $sqlUser; ?></h2></div>
+        <div class="col-sm-8"><h2><?php if(isset($sqlUser)) echo $sqlUser; else echo 'No user data found'; ?></h2></div>
         <div class="col-sm-4"><h3><!-- Charge Rate: $23 Not Yet Implemented --></h3></div>
       </div>
 
