@@ -3,7 +3,7 @@
   if(!isset($page))
     $page = '';
 
-  require_once('conf.php');
+  require_once('config.inc.php');
 ?>
 <!DOCTYPE html>
 <html>

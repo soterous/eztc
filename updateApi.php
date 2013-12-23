@@ -1,5 +1,5 @@
 <?php
-require_once('conf.php');
+require_once('config.inc.php');
 
 $json = json_decode($jason, true);
 
