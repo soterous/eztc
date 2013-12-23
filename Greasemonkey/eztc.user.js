@@ -165,16 +165,18 @@ function pushTimesheet() {
   var postVals = {};
   postVals['employee'] = $('#emplName').text().trim();
   postVals['projects'] = projects;
-  
+
   // post it!  
   GM_xmlhttpRequest({
     method: "POST",
     url: eztcServerUrl,
-    data: postVals,
+    data: $.param(postVals),
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
     onerror: function(response) {
-      console.error("Couldn't post the values");
+      console.error("Couldn't post the values!", postVals, $.param(postVals));
     }
-  });
-  
+  });  
   
 }
