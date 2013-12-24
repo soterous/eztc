@@ -92,7 +92,7 @@
         <h1>Easy Timeclock</h1>
         
         <?php      
-          $result = $mysqli->query("SELECT `employee`.`Name` as Name FROM employee Order By Name") or die("User query failed");
+          $result = $mysqli->query("SELECT `Employee`.`Name` as Name FROM `Employee` Order By Name") or die("User query failed");
         ?>       
         
         <form class="form-horizontal" role="form">
@@ -111,7 +111,7 @@
         </form>
         
         <?php      
-          $result = $mysqli->query("SELECT `project`.`Code` as Name FROM `project` Order By Name") or die("Project query failed");
+          $result = $mysqli->query("SELECT `Project`.`Code` as Name FROM `Project` Order By Name") or die("Project query failed");
         ?>      
         
         <form class="form-horizontal" role="form">

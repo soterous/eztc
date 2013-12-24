@@ -1,9 +1,9 @@
 <?php
 require_once('header.php');
 
-$qUserProjects = "SELECT `project`.`Code` as Code, `timeentry`.`Hours` as Hours, `timeentry`.`Date` as Date, `employee`.`Name`
- as Name FROM timeentry LEFT JOIN project ON `timeentry`.`ProjectId` = `project`.`Id` LEFT JOIN employee ON 
- `timeentry`.`EmployeeId` = `employee`.`Id` WHERE `employee`.`Name` = ? Order By `timeentry`.`Date`;";
+$qUserProjects = "SELECT `Project`.`Code` as Code, `TimeEntry`.`Hours` as Hours, `TimeEntry`.`Date` as Date, `Employee`.`Name`
+ as Name FROM `TimeEntry` LEFT JOIN `Project` ON `TimeEntry`.`ProjectId` = `Project`.`Id` LEFT JOIN `Employee` ON 
+ `TimeEntry`.`EmployeeId` = `Employee`.`Id` WHERE `Employee`.`Name` = ? Order By `TimeEntry`.`Date`;";
  
 // Get instance of statement
 $stmt = $mysqli->stmt_init();
