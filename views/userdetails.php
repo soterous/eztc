@@ -59,68 +59,85 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
   $data[$row['Code']]['Dates'][$row['Date']] = $row['Hours'];
   
 }
-?>  
-    <div class="container">
+?> 
+  <div class="container">
       <div class="row details-title">
         <div class="col-sm-8"><h2><?php if(isset($sqlUser)) echo $sqlUser; else echo 'No user data found'; ?></h2></div>
         <div class="col-sm-4"><h3><!-- Charge Rate: $23 Not Yet Implemented --></h3></div>
       </div>
 
-<?php
-  // Iterate over each project string
-  foreach($data as $projectCode => $project):
-?>
+    <?php
+      // Iterate over each project string
+      foreach($data as $projectCode => $project):
+    ?>
       <div class="panel panel-info project-details">
         <div class="panel-heading">
           <div class="row">
             <div class="col-sm-10"><?php echo $projectCode; ?></div>
             <div class="col-sm-2" style="text-align:right">Total hours: <?php echo $project['TotalHours']; ?></div>
           </div>
-        </div>
-    <?php
-      // Iterate over each date for the current project string
-      $currentMonth = 'first';
-      $thisMonthsTotal = 0;
-      foreach($project['Dates'] as $sDate => $hours){
-        $unix = strtotime($sDate);
-        // Parse the shorthand month
-        $month = date('M', $unix);
-        // Parse the date format eg: 12/28
-        $date = date('n/j', $unix);
-        // Are we starting a new month?
-        if($month != $currentMonth){
-          // If we're not the first month, close the previous month's div and spit their monthly total
+        </div> 
+      <?php        
+        // We use this to know when the month has changed
+        $currentMonth = 'first';
+        $calendar = array_fill(1, 31, 0);
+        // Sort the dates so they're all in order
+        //asort($project['Dates']);
+        foreach($project['Dates'] as $sDate => $hours) {
+          // Convert the date string to unix timestamp
+          $unix = strtotime($sDate);
+          // Get the Month
+          $month = date('F', $unix);
+          // Get the Day
+          $day = intval(date('j', $unix));
+          
+          // Are we starting a new month?
+          if($month != $currentMonth){
+          
           if($currentMonth != 'first') {
-            echo "          <div><span>Total:</span>$thisMonthsTotal</div>\n";
-            echo '        </div> <!-- /calendar -->'."\n";
+              //echo '      <div class="week">'."\n";
+              
+              foreach($calendar as $hours)
+                echo "      <div>$hours</div>\n";
+            
+              echo "        <div><span>Total: </span>".array_sum($calendar)."</div>\n";
+              echo '      </div> <!-- /week -->'."\n";
+            }
+          
+            // If we're not on the first month, dump the calendar and close it up
+            // Spit the month header
+            echo '        <h3 class="weekHeader">'.$month.'</h3>'."\n";
+            echo '        <div class="week">'."\n";
+            for($i = 1; $i <= 31; $i++)
+              echo '        <div>'.$i.'</div>'."\n";
+            //echo '        </div>'."\n";
+            
+            
+            
+            
+            
+            // Reset the calendar
+            $calendar = array_fill(1, 31, 0);
+            // Save the current month
+            $currentMonth = $month;
           }
           
-          // Start the month block
-          echo '    <div class="calendar">'."\n";
-          // Echo the month
-          echo "          <div>$month</div>\n";
           
-          // Save the month
-          $currentMonth = $month;
-          
-          // Reset
-          $thisMonthsTotal = 0;
+          // Add today's hours to the calendar
+          $calendar[$day] = $hours;
         }
+          //echo '      <div class="week">'."\n";
+          
+          foreach($calendar as $hours)
+            echo "      <div>$hours</div>\n";
         
-        $thisMonthsTotal += $hours;
-        echo "          <div><span>$date</span>$hours</div>\n";
-      }
-    // Close the last Calendar
-    echo "          <div><span>Total:</span>$thisMonthsTotal</div>\n";
-    echo '        </div> <!-- /calendar -->'."\n";
-    // Close the panel div
-    echo "      </div> <!-- /panel -->\n";
-    endforeach;
+          echo "        <div><span>Total: </span>".array_sum($calendar)."</div>\n";
+          echo '      </div> <!-- /week -->'."\n";
+        echo '</div> <!-- /panel -->'."\n";
+      endforeach;
     ?>
       
-     
     </div> <!-- /container -->
-    
-    
+  
     
 <?php require_once('footer.php'); ?>
