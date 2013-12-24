@@ -3,7 +3,7 @@
 // @namespace   com.soterous.eztc
 // @description Pushes each DELTEK timecard to the EZTC server
 // @include     https://*/DeltekTC/TimeCollection.msv
-// @version     1.0
+// @version     1.1
 // @downloadURL https://raw.github.com/soterous/EZTC/master/Greasemonkey/eztc.user.js
 // @updateURL   https://raw.github.com/soterous/EZTC/master/Greasemonkey/eztc.meta.js
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
@@ -87,6 +87,11 @@ $(window).load(function () {
     <li class="appOptionsLi"><div id="appOptionsDivnotes" class="appOption">Manual Timesheet Push</div></li>\
     <li><img class="appOptionsRight"></li>\
   </div>').click(function(){pushTimesheet();}).appendTo('#applicationOptionsUl');
+  
+  // Create the status bar
+  $('<span id="statusbar" style="postion: relative; margin-left: 30px; color: green; display: none;"></span>')
+  .appendTo($('#appTitle').parent());
+
  
 });
 
@@ -174,8 +179,15 @@ function pushTimesheet() {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
     },
+    onload: function(res){
+      if(res.status == 200)
+        $('#statusbar').css('color','green').text('Timecard uploaded to EZTC').show().delay(7000).fadeOut();
+      else
+        $('#statusbar').css('color','red').text('There was a problem uploading your timecard! Try Again! ' + res.status).show().delay(7000).fadeOut();
+    },
     onerror: function(response) {
       console.error("Couldn't post the values!", postVals, $.param(postVals));
+      $('#statusbar').css('color','red').text('There was a problem uploading your timecard! Try Again!').show().delay(7000).fadeOut();
     }
   });  
   
