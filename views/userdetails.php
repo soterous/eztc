@@ -98,7 +98,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
               //echo '      <div class="week">'."\n";
               
               foreach($calendar as $hours)
-                echo "      <span>$hours\t</span>\n";
+                echo "      <span>$hours </span>\n";
             
               echo "        <span><span>Total: </span>".array_sum($calendar)."</span>\n";
               echo '      </div> <!-- /week -->'."\n";
@@ -109,7 +109,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
             echo '        <h3 class="weekHeader">'.$month.'</h3>'."\n";
             echo '        <div class="week">'."\n";
             for($i = 1; $i <= 31; $i++)
-              echo '        <div>'.$i.'</div>'."\n";
+              echo '        <span>'.$i.'</span>'."\n";
             //echo '        </div>'."\n";
             
             
@@ -129,7 +129,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
           //echo '      <div class="week">'."\n";
           
           foreach($calendar as $hours)
-            echo "      <span>$hours\t</span>\n";
+            echo "      <span>$hours </span>\n";
         
           echo "        <span><span>Total: </span>".array_sum($calendar)."</span>\n";
           echo '      </div> <!-- /week -->'."\n";
