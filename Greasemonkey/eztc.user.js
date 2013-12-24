@@ -3,7 +3,7 @@
 // @namespace   com.soterous.eztc
 // @description Pushes each DELTEK timecard to the EZTC server
 // @include     https://*/DeltekTC/TimeCollection.msv
-// @version     1.1
+// @version     1.2
 // @downloadURL https://raw.github.com/soterous/EZTC/master/Greasemonkey/eztc.user.js
 // @updateURL   https://raw.github.com/soterous/EZTC/master/Greasemonkey/eztc.meta.js
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
@@ -16,6 +16,8 @@ var eztcServerUrl = 'http://localhost/eztc/update';
 //////////////////// DO NOT EDIT PAST THIS LINE ////////////////////
 /* CHANGELOG
  * v1    : Initial release
+ * v1.1  : Add status messages
+ * v1.2  : Handle Save button click better
 */
 //End Log
 
@@ -27,7 +29,7 @@ $(window).load(function () {
     return;
     
   // Add Click event to the save button to trigger the data push
-  $('#appOptionsImgsaveTS').click(function(){
+  $('#saveTS').click(function(){
     pushTimesheet();
   });
 
