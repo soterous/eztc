@@ -98,9 +98,9 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
               //echo '      <div class="week">'."\n";
               
               foreach($calendar as $hours)
-                echo "      <div>$hours</div>\n";
+                echo "      <span>$hours\t</span>\n";
             
-              echo "        <div><span>Total: </span>".array_sum($calendar)."</div>\n";
+              echo "        <span><span>Total: </span>".array_sum($calendar)."</span>\n";
               echo '      </div> <!-- /week -->'."\n";
             }
           
@@ -129,9 +129,9 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
           //echo '      <div class="week">'."\n";
           
           foreach($calendar as $hours)
-            echo "      <div>$hours</div>\n";
+            echo "      <span>$hours\t</span>\n";
         
-          echo "        <div><span>Total: </span>".array_sum($calendar)."</div>\n";
+          echo "        <span><span>Total: </span>".array_sum($calendar)."</span>\n";
           echo '      </div> <!-- /week -->'."\n";
         echo '</div> <!-- /panel -->'."\n";
       endforeach;
