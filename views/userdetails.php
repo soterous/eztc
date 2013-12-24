@@ -100,7 +100,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
               foreach($calendar as $hours)
                 echo "      <span>$hours </span>\n";
             
-              echo "        <span><span>Total: </span>".array_sum($calendar)."</span>\n";
+              echo "        <span><span>Total:</span> ".array_sum($calendar)."</span>\n";
               echo '      </div> <!-- /week -->'."\n";
             }
           
@@ -131,7 +131,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
           foreach($calendar as $hours)
             echo "      <span>$hours </span>\n";
         
-          echo "        <span><span>Total: </span>".array_sum($calendar)."</span>\n";
+          echo "        <span><span>Total:</span> ".array_sum($calendar)."</span>\n";
           echo '      </div> <!-- /week -->'."\n";
         echo '</div> <!-- /panel -->'."\n";
       endforeach;

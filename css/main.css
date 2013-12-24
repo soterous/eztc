@@ -107,7 +107,7 @@ a.disabled {
   overflow: hidden;
 }
 
-.week span {
+.week > span {
   float: left;
   border: 1px solid #DDD;
   border-width: 0 1px 1px 0;
@@ -123,14 +123,16 @@ a.disabled {
 /* total */
 .week > span:last-child {
   border-width: 0;
-  line-height: 30px;
-  text-align: right;
-  margin-right: 30px;
+  width: auto;
   float: right;
+  padding-right: 5px;
 }
 
-.week > span:last-child  span{
+.week > span:last-child > span{
   font-weight: bold;
+  display: block;
+  float: left;
+  padding-right: 3px;
 }
 
 
