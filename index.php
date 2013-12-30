@@ -1,7 +1,7 @@
 <?php
 require 'flight/Flight.php';
 
-// Set this to the global application root path
+// Set this to the global (www) application root path.
 Flight::view()->set('GlobalRoot', GlobalRoot());
 
 /**************
@@ -26,14 +26,24 @@ Flight::route('*', function(){
   Flight::render('home', array('page' => 'home'));
 });
 
+// DEV ONLY!
+// Barfs out errors a little nicer
+Flight::map('error', function(Exception $ex){
+    // Handle error
+    
+    //echo '<div><pre>'.print_r($ex, true).'</pre></div>';
+    echo '<div><pre>'.$ex->getMessage().'<br>'.$ex->getTraceAsString().'</pre></div>';
+});
+
 Flight::start();
 
 /**************
    FUNCTIONS
 ***************/
 
-// Figures out what the global root is so we can pass it to the templates to load scripts properly.
+// Figures out what the global root (www) is so we can pass it to the templates to load scripts properly.
 // This is better than hard-coding.
+// Eg: http://localhost/eztc
 function GlobalRoot() {
  $pageURL = '';
  

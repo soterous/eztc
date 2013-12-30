@@ -87,8 +87,9 @@ a.disabled {
   border-top: 1px solid #DDD !important;
 }
 
-/* Week! */
-.weekHeader {
+
+/*.month! */
+.monthHeader {
   border-bottom: 3px solid #DDD;
   border-top: 3px solid #DDD;
   padding-bottom: 4px;
@@ -99,15 +100,15 @@ a.disabled {
 }
 
 /* formats the first month heading */
-.weekHeader:nth-child(2) {
+.monthHeader:nth-child(2) {
   border-top: 0px solid black;
 }
 
-.week {
+.month {
   overflow: hidden;
 }
 
-.week > span {
+.month > span {
   float: left;
   border: 1px solid #DDD;
   border-width: 0 1px 1px 0;
@@ -115,20 +116,28 @@ a.disabled {
   text-align: center;
 }
 
-.week > span:nth-child(31n) {
+/* Fills the 31th child (last one in the row) to 4% to 
+   compensate for fractional sizing */
+.month > span:nth-child(31n) {
   width: 4%;
   border-right-width: 0;
 }
 
-/* total */
-.week > span:last-child {
+/* Change the font color of the first 31 elements
+   because they are headers */
+.month > span:nth-child(-n+31) {
+  color: #9999AD;
+}
+
+/* total cell */
+.month > span:last-child {
   border-width: 0;
   width: auto;
   float: right;
   padding-right: 5px;
 }
 
-.week > span:last-child > span{
+.month > span:last-child > span{
   font-weight: bold;
   display: block;
   float: left;

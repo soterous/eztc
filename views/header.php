@@ -4,6 +4,7 @@
     $page = '';
 
   require_once('config.inc.php');
+  require_once('functions.php');
 ?>
 <!DOCTYPE html>
 <html>
