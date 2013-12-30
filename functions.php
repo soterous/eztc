@@ -32,7 +32,7 @@ function GenerateProjectPanel($panelName, $dates) {
   $html = '<div class="panel panel-info project-details">'."\n".
           '  <div class="panel-heading">'."\n".
           '    <div class="row">'."\n".
-          '      <div class="col-sm-10">'.$panelName.'</div>'."\n";
+          '      <div class="col-sm-10" class="panel-title">'.$panelName.'</div>'."\n";
           // optional TotalHours
   $html .='      <div style="text-align:right" class="col-sm-2">Total hours: '.$totalHours.'</div>'."\n";          
   $html .='    </div>'."\n".

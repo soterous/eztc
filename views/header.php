@@ -17,7 +17,7 @@
     <link href="<?php echo $GlobalRoot; ?>css/select2.css" rel="stylesheet">
     <link href="<?php echo $GlobalRoot; ?>css/main.css" rel="stylesheet">
     
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- JS Libraries -->
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

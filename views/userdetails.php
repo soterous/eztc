@@ -75,6 +75,9 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
   
 }
 ?> 
+  <script type="text/javascript">
+    // do something
+  </script>
   <div class="container">
   
     <div class="row details-title">
@@ -82,13 +85,14 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
       <div class="col-sm-4"><h3><!-- Charge Rate: $23 Not Yet Implemented --></h3></div>
     </div>     
     
-    <?php
-      foreach($data as $projCode => $dates) {
-        echo GenerateProjectPanel($projCode, $dates);
-      }
-    ?>
-
-  
+    <div id="projects-list">
+      <input class="search" />
+      <?php
+        foreach($data as $projCode => $dates) {
+          echo GenerateProjectPanel($projCode, $dates);
+        }
+      ?>
+    </div>  
     
   </div> <!-- /container -->
 
