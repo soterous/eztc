@@ -61,8 +61,8 @@ function GenerateProjectPanel($panelName, $dates) {
  */
 function GeneratePanelCalendar($dates){
 
-  // Arrange the dates
-  asort($dates);
+  // Arrange the dates in desc order
+  krsort($dates);
   
   // $months will store our processed data like this:
   /*
