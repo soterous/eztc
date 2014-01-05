@@ -2,6 +2,11 @@
   // Page variable must be set
   if(!isset($page))
     $page = '';
+  // We must have a value for $user and $project for the select boxes
+  if(!isset($user))
+    $user = null;
+  if(!isset($project))
+    $project = null;
 
   require_once('config.inc.php');
   require_once('functions.php');
@@ -45,7 +50,7 @@
   </head>
   <body>
     <!-- Static navbar -->
-    <div class="navbar navbar-default navbar-static-top" role="navigation" autocomplete="off">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -101,9 +106,10 @@
             <label class="col-sm-4 control-label nopadding">View details for employee:</label>
             <div class="col-sm-8">
               <select id="sel-users" name="user" data-placeholder="Select an Employee">
-                <option selected="selected"></option>
                 <?php 
-                  while($row = $result->fetch_assoc()){ echo '<option value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
+                  if($user == null)
+                    echo '<option selected="selected"></option>'."\n";
+                  while($row = $result->fetch_assoc()){ echo '<option'.($row['Name'] == $user ? ' selected="selected"' : '').' value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
                   $result->close();
                 ?>
               </select>
@@ -120,9 +126,10 @@
             <label class="col-sm-4 control-label nopadding">View details for project:</label>
             <div class="col-sm-8">
               <select id="sel-projects" name="project" data-placeholder="Select a project">
-                <option selected="selected"></option>
                 <?php 
-                  while($row = $result->fetch_assoc()){ echo '<option value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
+                  if($project == null)
+                    echo '<option selected="selected"></option>'."\n";
+                  while($row = $result->fetch_assoc()){ echo '<option'.($row['Name'] == $project ? ' selected="selected"' : '').' value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
                   $result->close();
                 ?>
               </select>
