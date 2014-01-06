@@ -3,7 +3,7 @@
 *  Commonly used functions are stored here
 ***************/
 // Debug only
-require_once('FirePhp/fb.php');
+include('FirePhp/fb.php');
 
 /**
  * GeneratePanel
