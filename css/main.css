@@ -26,7 +26,7 @@ a.disabled {
 
 /* Search */
 .search {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 /* Details page */
@@ -139,7 +139,7 @@ a.disabled {
   border-width: 0;
   width: auto;
   float: right;
-  padding-right: 5px;
+  padding-right: 15px;
 }
 
 .month > span:last-child > span{
