@@ -97,7 +97,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
   <div class="container">
   
     <div class="row details-title">
-      <div class="col-sm-8"><h2><?php if(isset($sqlProject)) echo $sqlProject; else echo 'No user data found'; ?></h2></div>
+      <div class="col-sm-8"><h2><?php if(isset($sqlProject)) echo $sqlProject; else echo 'No project data found'; ?></h2></div>
       <div class="col-sm-4" style="text-align:right"><h3>Summed Total Hours: <?php echo $GrandTotal; ?></h3></div>
     </div>     
     
