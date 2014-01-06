@@ -34,7 +34,7 @@
     <script type="text/javascript">
       $(document).ready(function() { 
         // Sets up the select boxes on the top of the main page and handles their submit
-        $("#sel-users, #sel-projects").select2({width: '250px'})
+        $("#sel-users, #sel-projects").select2({width: 'resolve'})
           .on('change', function(e){                   
             var value = $(this).val();
             
@@ -58,57 +58,57 @@
         
         // Filter panels
         // find the search box and compile a list of bocks that we can search, then save them.
-      $('input.search').each(function() {
-        var searchInput = $(this);
-        
-        // Loop thru each panel div
-        searchInput.parent().children('div').each(function() {
-          var theDiv = $(this);
-          var title = theDiv.find('div.panel-heading').first().find('div.row').first().children('div').first().text();
-                   
-          // Add the data we've pulled (titles are unique)
-          var data = searchInput.data('panels');
-          if(data == undefined)
-            data = [];
-          data[title] = theDiv;
-          searchInput.data('panels', data);
-        });
-      });     
+        $('input.search').each(function() {
+          var searchInput = $(this);
+          
+          // Loop thru each panel div
+          searchInput.parent().children('div').each(function() {
+            var theDiv = $(this);
+            var title = theDiv.find('div.panel-heading').first().find('div.row').first().children('div').first().text();
+                     
+            // Add the data we've pulled (titles are unique)
+            var data = searchInput.data('panels');
+            if(data == undefined)
+              data = [];
+            data[title] = theDiv;
+            searchInput.data('panels', data);
+          });
+        });     
       
-      // Listen for changes
-      $('input.search').change(function() {
-        var search = $(this);
-        var text = search.val();
-        var dataArray = search.data('panels');
-        
-        // Check for clear
-        if(text == '' || text == ' ' || text == '  ') {
-          // Loop thru each panel and display it          
-          for (var key in dataArray) {
-            if (dataArray.hasOwnProperty(key)) {
-              dataArray[key].css('display','block');                
-            }
-          }          
-        }
-        else {
-          // Parse the text value
-          for (var key in dataArray) {
-            if (dataArray.hasOwnProperty(key)) {
-              // If the search text is not contained in the key, hide it
-              if(key.toLowerCase().indexOf(text.toLowerCase()) === -1) {
-                // text not found in key
-                dataArray[key].css('display','none');
-              } else {
-                // text found in key
-                dataArray[key].css('display','block');
+        // Listen for changes
+        $('input.search').change(function() {
+          var search = $(this);
+          var text = search.val();
+          var dataArray = search.data('panels');
+          
+          // Check for clear
+          if(text == '' || text == ' ' || text == '  ') {
+            // Loop thru each panel and display it          
+            for (var key in dataArray) {
+              if (dataArray.hasOwnProperty(key)) {
+                dataArray[key].css('display','block');                
               }
-            }
-          }          
-        }        
-      }).keyup(function() {
-        // If the value changes, we need to re-parse
-        $(this).trigger( "change" );
-      });
+            }          
+          }
+          else {
+            // Parse the text value
+            for (var key in dataArray) {
+              if (dataArray.hasOwnProperty(key)) {
+                // If the search text is not contained in the key, hide it
+                if(key.toLowerCase().indexOf(text.toLowerCase()) === -1) {
+                  // text not found in key
+                  dataArray[key].css('display','none');
+                } else {
+                  // text found in key
+                  dataArray[key].css('display','block');
+                }
+              }
+            }          
+          }        
+        }).keyup(function() {
+          // If the value changes, we need to re-parse
+          $(this).trigger( "change" );
+        });
         
       });
     </script>
@@ -170,7 +170,7 @@
           <div class="form-group">
             <label class="col-sm-4 control-label nopadding">View details for employee:</label>
             <div class="col-sm-8">
-              <select id="sel-users" name="user" data-placeholder="Select an Employee">
+              <select id="sel-users" name="user" style="width:100%" data-placeholder="Select an Employee">
                 <?php 
                   if($user == null)
                     echo '<option selected="selected"></option>'."\n";
@@ -190,7 +190,7 @@
           <div class="form-group">
             <label class="col-sm-4 control-label nopadding">View details for project:</label>
             <div class="col-sm-8">
-              <select id="sel-projects" name="project" data-placeholder="Select a project">
+              <select id="sel-projects" name="project" style="width:100%" data-placeholder="Select a project" >
                 <?php 
                   if($project == null)
                     echo '<option selected="selected"></option>'."\n";
