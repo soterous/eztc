@@ -67,7 +67,7 @@ function GlobalRoot() {
  
  $pageURL .= "://";
  if ($_SERVER["SERVER_PORT"] != "80") {
-  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].Flight::request()->base.'/';
  } else {
   $pageURL .= $_SERVER["SERVER_NAME"].Flight::request()->base.'/';
  }
