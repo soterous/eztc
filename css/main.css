@@ -24,6 +24,11 @@ a.disabled {
   font-style: italic;
 }
 
+/* Search */
+.search {
+  margin-bottom: 20px;
+}
+
 /* Details page */
 .details-title h3{
   line-height: 33px;
@@ -144,6 +149,20 @@ a.disabled {
   padding-right: 3px;
 }
 
+/* Clearable */
+.clearable{
+  background:url('../img/clearx.png') no-repeat right -10px center;
+  border:1px solid #999;
+  padding:3px 18px 3px 4px; /* USE the same right padding in jQ! */
+  border-radius:3px;
+  transition: background 0.4s;
+}
+.clearable.x{
+  background-position: right 5px center;
+}
+.clearable.onX{
+  cursor:pointer;
+}
 
 
 
