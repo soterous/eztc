@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
 
-$qRecentProjects = "SELECT `Project`.`Code` AS `Code`, SUM(`TimeEntry`.`Hours`) AS `Hours` FROM `TimeEntry` LEFT JOIN `Project` ON `TimeEntry`.`ProjectId`=`Project`.`Id` GROUP BY `Project`.`Code` ORDER BY `TimeEntry`.`LastUpdated` ASC LIMIT 5";
+$qRecentProjects = "SELECT `Project`.`Code` AS `Code`, SUM(`TimeEntry`.`Hours`) AS `Hours` FROM `TimeEntry` LEFT JOIN `Project` ON `TimeEntry`.`ProjectId`=`Project`.`Id` GROUP BY `Project`.`Code` ORDER BY `TimeEntry`.`LastUpdated` DESC LIMIT 5";
 ?>  
     <div class="container">
       <div class="panel panel-info">
