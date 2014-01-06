@@ -39,6 +39,8 @@ $data = array();
     )
   )
 */
+// GrandTotal will be the total number of hours billed against this project
+$GrandTotal = 0;
 // Our data comes to us sorted by name so they're in the proper order already
 while($row = $res->fetch_array(MYSQLI_ASSOC)) {
   if(!isset($sqlProject))
@@ -51,13 +53,14 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
   // Add the Date and Hours to the project entry
   $data[$row['Name']][$row['Date']] = $row['Hours'];
   
+  $GrandTotal += $row['Hours'];  
 }
 ?> 
   <div class="container">
   
     <div class="row details-title">
       <div class="col-sm-8"><h2><?php if(isset($sqlProject)) echo $sqlProject; else echo 'No user data found'; ?></h2></div>
-      <div class="col-sm-4"><h3><!-- Charge Rate: $23 Not Yet Implemented --></h3></div>
+      <div class="col-sm-4" style="text-align:right"><h3>Summed Total Hours: <?php echo $GrandTotal; ?></h3></div>
     </div>     
     
     <div id="projects-list">

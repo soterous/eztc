@@ -146,7 +146,7 @@ function GenerateMonth($month, $inDays) {
   }
   
   // add the total element
-  $html .= '<span><span>Total:</span> '.$totalHours.'</span>'."\n";
+  $html .= '<span><span>Month\'s Total:</span> '.$totalHours.'</span>'."\n";
   
   // Close up the month
   $html .= "</div>\n";
