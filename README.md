@@ -3,6 +3,7 @@ Easy Timeclock (eztc)
 
 Requires Apache Mod_Rewrite (sometimes called the rewrite_module)
 PHP 5.4 is prob required
+PHP Mysqli and Mysqlnd are required
 
 ## What To Delete
 
