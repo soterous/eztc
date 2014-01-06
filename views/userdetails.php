@@ -61,7 +61,12 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
     </div>     
     
     <div id="projects-list">
-      <input class="clearable search" placeholder="Filter By Project String" value="" autocomplete="off" />
+      
+      <div class="row">
+        <div class="col-sm-4">
+          <input class="clearable search" placeholder="Filter By Project String" value="" autocomplete="off" />
+        </div>          
+      </div>    
 
       <?php
         foreach($data as $projCode => $dates) {

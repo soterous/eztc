@@ -114,8 +114,7 @@ while($row = $res->fetch_array(MYSQLI_ASSOC)) {
               <a <?php echo 'href="'.substr($FullUrl, 0, strrpos($FullUrl, '/')).'/user"'; ?> class="btn <?php echo ($groupBy == 'user' ? 'btn-success disabled' : 'btn-default'); ?>">User</a>
               <a <?php echo 'href="'.substr($FullUrl, 0, strrpos($FullUrl, '/')).'/month"'; ?> class="btn <?php echo ($groupBy == 'month' ? 'btn-success disabled' : 'btn-default'); ?>">Month</a>
             </div>
-          </div>
-          
+          </div>          
         </div>      
 
     
