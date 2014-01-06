@@ -119,6 +119,7 @@ a.disabled {
   border-width: 0 1px 1px 0;
   width: 3.2%;
   text-align: center;
+  overflow: hidden;
 }
 
 /* Fills the 31th child (last one in the row) to 4% to 

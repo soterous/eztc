@@ -6,6 +6,8 @@ $dbUser = "root";
 $dbPassword = "root";
 $dbDatabase = "eztc";
 
+date_default_timezone_set('America/New_York');
+
 // Create connection
 $mysqli= new mysqli($dbHost, $dbUser, $dbPassword, $dbDatabase);
 

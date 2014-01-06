@@ -3,6 +3,8 @@ require 'flight/Flight.php';
 
 // Set this to the global (www) application root path.
 Flight::view()->set('GlobalRoot', GlobalRoot());
+Flight::view()->set('FullUrl', trim(GlobalRoot(), '/').Flight::request()->url);
+
 
 /**************
     ROUTES
@@ -11,8 +13,16 @@ Flight::route('/user/@user', function($user){
   Flight::render('userdetails', array('user' => $user, 'page' => 'userdetails'));  
 });
 
+// Projects has a 2nd param that specifies group by user or month, if none are passed, default to user
 Flight::route('/project/@project', function($project){
-  Flight::render('projectdetails', array('project' => $project, 'page' => 'projectdetails'));
+  Flight::redirect(GlobalRoot().'project/'.$project.'/user');
+});
+
+Flight::route('/project/@project/@groupBy', function($project, $groupBy){
+  Flight::render('projectdetails', array(
+    'project' => $project, 
+    'groupBy' => $groupBy,
+    'page' => 'projectdetails'));
 });
 
 // This is for the GM script to push to
@@ -26,14 +36,17 @@ Flight::route('*', function(){
   Flight::render('home', array('page' => 'home'));
 });
 
-// DEV ONLY!
+// START DEV ONLY!
 // Barfs out errors a little nicer
 Flight::map('error', function(Exception $ex){
-    // Handle error
-    
-    //echo '<div><pre>'.print_r($ex, true).'</pre></div>';
-    echo '<div><pre>'.$ex->getMessage().'<br>'.$ex->getTraceAsString().'</pre></div>';
+    // Handle error    
+
+      echo '<div>';
+      echo '<pre>'.$ex->getMessage().' '.$ex->getFile().' ('.$ex->getLine().")\n";
+      echo $ex->getTraceAsString().'</pre>';
+      echo '</div>';
 });
+// END DEV ONLY!
 
 Flight::start();
 

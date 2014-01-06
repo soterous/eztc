@@ -2,6 +2,7 @@ Easy Timeclock (eztc)
 ==============
 
 Requires Apache Mod_Rewrite (sometimes called the rewrite_module)
+PHP 5.4 is prob required
 
 ## What To Delete
 
@@ -12,3 +13,5 @@ Below is a list of files and/or directories that should be removed
 - /FirePhp
 - /setup
 - /.gitignore
+
+from index.php, remove the lines between the DEV ONLY tags

@@ -62,7 +62,7 @@
           var searchInput = $(this);
           
           // Loop thru each panel div
-          searchInput.parent().children('div').each(function() {
+          searchInput.parent().children('div.panel').each(function() {
             var theDiv = $(this);
             var title = theDiv.find('div.panel-heading').first().find('div.row').first().children('div').first().text();
                      

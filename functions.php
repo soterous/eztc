@@ -21,12 +21,23 @@ require_once('FirePhp/fb.php');
  * Returns:
  * Html block for the project
  */
-function GenerateProjectPanel($panelName, $dates) {
-  
+function GenerateProjectPanel($panelName, $dates, $groupBy = 'user') {
   // Calculate total hours
   $totalHours = 0;
-  foreach($dates as $key => $hours)
-    $totalHours += $hours;
+
+  // Total Hours calc
+  switch($groupBy) {
+    case 'user':
+      foreach($dates as $key => $hours)
+        $totalHours += $hours;  
+      break;
+    
+    case 'month':
+      foreach($dates as $days)
+        foreach($days as $hours)
+          $totalHours += $hours;      
+      break;
+  }
 
   // build the top
   $html = '<div class="panel panel-info project-details">'."\n".
@@ -39,7 +50,13 @@ function GenerateProjectPanel($panelName, $dates) {
           '  </div> ';
   
   // Fill the calendar
-  $html .= GeneratePanelCalendar($dates);
+  if($groupBy == 'user')
+    $html .= GeneratePanelCalendar($dates);
+  else if ($groupBy == 'month') {
+    // If we're grouped by month, we're already formatted corectly
+    foreach($dates as $title => $days)
+      $html .= GenerateMonth($title, $days);
+  }
   
   // close up shop
   $html .='</div>';
@@ -59,7 +76,7 @@ function GenerateProjectPanel($panelName, $dates) {
  *   ...
  *
  */
-function GeneratePanelCalendar($dates){
+function GeneratePanelCalendar($dates){ 
 
   // Arrange the dates in desc order
   krsort($dates);
@@ -155,7 +172,7 @@ function GenerateMonth($month, $inDays) {
 }
 
 // Genrates a day with $content inside;
-function GenerateDay($content) {  
+function GenerateDay($content) {
   return '<span>'.sprintf("%-2s", $content).'</span>'."\n";
 }
 
