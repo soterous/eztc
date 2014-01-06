@@ -56,6 +56,60 @@
           $(this).removeClass('x onX').val('').trigger('change');
         });
         
+        // Filter panels
+        // find the search box and compile a list of bocks that we can search, then save them.
+      $('input.search').each(function() {
+        var searchInput = $(this);
+        
+        // Loop thru each panel div
+        searchInput.parent().children('div').each(function() {
+          var theDiv = $(this);
+          var title = theDiv.find('div.panel-heading').first().find('div.row').first().children('div').first().text();
+                   
+          // Add the data we've pulled (titles are unique)
+          var data = searchInput.data('panels');
+          if(data == undefined)
+            data = [];
+          data[title] = theDiv;
+          searchInput.data('panels', data);
+        });
+      });     
+      
+      // Listen for changes
+      $('input.search').change(function() {
+        var search = $(this);
+        var text = search.val();
+        var dataArray = search.data('panels');
+        
+        // Check for clear
+        if(text == '' || text == ' ' || text == '  ') {
+          // Loop thru each panel and display it          
+          for (var key in dataArray) {
+            if (dataArray.hasOwnProperty(key)) {
+              dataArray[key].css('display','block');                
+            }
+          }          
+        }
+        else {
+          // Parse the text value
+          for (var key in dataArray) {
+            if (dataArray.hasOwnProperty(key)) {
+              // If the search text is not contained in the key, hide it
+              if(key.toLowerCase().indexOf(text.toLowerCase()) === -1) {
+                // text not found in key
+                dataArray[key].css('display','none');
+              } else {
+                // text found in key
+                dataArray[key].css('display','block');
+              }
+            }
+          }          
+        }        
+      }).keyup(function() {
+        // If the value changes, we need to re-parse
+        $(this).trigger( "change" );
+      });
+        
       });
     </script>
   </head>

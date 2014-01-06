@@ -157,9 +157,11 @@ a.disabled {
   border-radius:3px;
   transition: background 0.4s;
 }
+
 .clearable.x{
   background-position: right 5px center;
 }
+
 .clearable.onX{
   cursor:pointer;
 }
