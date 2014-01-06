@@ -2,8 +2,6 @@
 /**************
 *  Commonly used functions are stored here
 ***************/
-// Debug only
-include('FirePhp/fb.php');
 
 /**
  * GeneratePanel

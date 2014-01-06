@@ -9,9 +9,7 @@ PHP 5.4 is prob required
 Obviously there's going to be dev files and folders that should be deleted when deploying EZTC.
 Below is a list of files and/or directories that should be removed
 
-- /.git
 - /FirePhp
 - /setup
-- /.gitignore
 
 from index.php, remove the lines between the DEV ONLY tags
