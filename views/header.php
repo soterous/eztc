@@ -136,6 +136,7 @@
             <li class="active"><a href="#">Project Details</a></li>
             <?php } ?>
             
+            <li><a href="<?php echo $GlobalRoot ?>Greasemonkey/eztc.user.js">Get The Script!</a></li>
             
             <!-- <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
