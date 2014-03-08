@@ -19,7 +19,7 @@ $qGetProjects = "SELECT `Code`, `Name` FROM `Project` ORDER BY `Code`";
       <p>Assign human friendly names to project strings.</p>
     </div>  
 
-    <form method="post">
+    <form method="post" action="<?php echo $GlobalRoot.'manage' ?>">
       <table class="table">
         <tr>
           <th>Project String</th>
