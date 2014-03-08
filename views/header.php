@@ -184,7 +184,7 @@
         </form>
         
         <?php      
-          $result = $mysqli->query("SELECT `Project`.`Code` as Name FROM `Project` Order By Name") or die("Project query failed");
+          $result = $mysqli->query("SELECT `Project`.`Code` as `ProjectName`, SUM(`TimeEntry`.`Hours`) as `TotalHours` FROM `Project` JOIN `TimeEntry` ON `Project`.`Id` = `TimeEntry`.`ProjectId` GROUP BY `ProjectName` HAVING `TotalHours` > 0 ORDER BY `ProjectName`");
         ?>      
         
         <form class="form-horizontal" role="form">
@@ -195,7 +195,7 @@
                 <?php 
                   if($project == null)
                     echo '<option selected="selected"></option>'."\n";
-                  while($row = $result->fetch_assoc()){ echo '<option'.($row['Name'] == $project ? ' selected="selected"' : '').' value="'.$row['Name'].'">'.$row['Name']."</option>\n"; }
+                  while($row = $result->fetch_assoc()){ echo '<option'.($row['ProjectName'] == $project ? ' selected="selected"' : '').' value="'.$row['ProjectName'].'">'.$row['ProjectName']."</option>\n"; }
                   $result->close();
                 ?>
               </select>
