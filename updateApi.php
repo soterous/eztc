@@ -35,6 +35,13 @@ if($stmt->prepare($qCheckEmployee)) {
 
 // Iterate through projects
 foreach ($projects as $project=>$days) {
+  
+  // Check if project is in blacklist specified in config.inc.phpk
+  if(in_array($project, $projBlacklist))
+  {
+    continue;
+  }
+
   // Check if project exists, if not then create.
   if($stmt->prepare($qCheckProject)) {
     $stmt->bind_param("s", $project);
