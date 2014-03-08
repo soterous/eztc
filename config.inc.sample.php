@@ -1,4 +1,8 @@
 <?php
+
+// Blacklist for Project Strings to exclude
+$projBlacklist = array("SAMPL.PROJ", "SAMP2.PROJ");
+
 // Common MySQL Setup
 // Connection Variables
 $dbHost = "localhost";
