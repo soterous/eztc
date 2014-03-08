@@ -1,4 +1,4 @@
-<?php require_once('header.php'); ?>
+<?php require_once('navigation.php'); ?>
 
 <!-- This is a cheap way to hide the above -->
 <style type="text/css">
