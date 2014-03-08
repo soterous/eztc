@@ -52,8 +52,14 @@ function GenerateProjectPanel($panelName, $dates, $groupBy = 'user') {
     $html .= GeneratePanelCalendar($dates);
   else if ($groupBy == 'month') {
     // If we're grouped by month, we're already formatted corectly
-    foreach($dates as $title => $days)
-      $html .= GenerateMonth($title, $days);
+    foreach($dates as $title => $days) {
+      $fixedDays = array();
+      foreach ($days as $date => $hours) {
+        $dayNum = explode('-', $date)[2];
+        $fixedDays[$dayNum] = $hours;
+      }
+      $html .= GenerateMonth($title, $fixedDays);
+    }
   }
   
   // close up shop
