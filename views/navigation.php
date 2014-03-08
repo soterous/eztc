@@ -44,6 +44,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li <?php if($page == 'home') echo 'class="active"'; ?>><a href="<?php echo $GlobalRoot; ?>">Home</a></li>
+            <li <?php if($page == 'manage') echo 'class="active"'; ?>><a href="<?php echo $GlobalRoot.'manage'; ?>">Management</a></li>
+
             <?php if($page == 'userdetails') { ?>
             <li class="active"><a href="#">User Details</a></li>
             <?php } ?>

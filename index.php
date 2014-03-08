@@ -27,7 +27,7 @@ Flight::route('/project/@project/@groupBy', function($project, $groupBy){
 
 // Management
 Flight::route('GET /manage', function(){
-  Flight::render('manage');
+  Flight::render('manage', array('page' => 'manage'));
 });
 
 Flight::route('POST /manage', function(){
