@@ -25,6 +25,15 @@ Flight::route('/project/@project/@groupBy', function($project, $groupBy){
     'page' => 'projectdetails'));
 });
 
+// Management
+Flight::route('GET /manage', function(){
+  Flight::render('manage');
+});
+
+Flight::route('POST /manage', function(){
+  echo '<h1>DEBUG</h1><p>This is what I see</p><pre>'.print_r(Flight::request(),true).'</pre>';
+});
+
 // This is for the GM script to push to
 Flight::route('POST /update', function(){ 
   $json = Flight::request()->data;
