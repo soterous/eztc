@@ -31,7 +31,8 @@ Flight::route('GET /manage', function(){
 });
 
 Flight::route('POST /manage', function(){
-  echo '<h1>DEBUG</h1><p>This is what I see from Flight::request()->data</p><pre>'.var_dump(Flight::request()->data).'</pre>';
+  $projectNames = Flight::request()->data;
+  Flight::render('manage', array('page' => 'manage', 'projectNames' => $projectNames));
 });
 
 // This is for the GM script to push to

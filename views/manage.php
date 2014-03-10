@@ -1,8 +1,27 @@
 <?php require_once('navigation.php'); 
-
 // Queries
 $qGetProjects = "SELECT `Code`, `Name` FROM `Project` ORDER BY `Code`";
+$qSetProjects = "UPDATE `Project` SET `Name` = ? WHERE `project`.`Code` = ?";
 
+// Get instance of statement
+$stmt = $mysqli->stmt_init();
+
+if (isset($projectNames))
+{
+  // Iterate through all the projects
+  foreach ($projectNames as $projectCode => $projectName ) {
+  // Fix up formatting
+  $code = str_replace('_','.',$projectCode);
+
+   if ($stmt->prepare($qSetProjects)) {
+       $stmt->bind_param("ss", $projectName, $code);
+       $stmt->execute();
+    } else {
+      die("Unable to update project string " . $code . "!");
+    }
+
+  }
+}
 
 ?>
 <!-- This is a cheap way to hide the above -->
@@ -27,8 +46,6 @@ $qGetProjects = "SELECT `Code`, `Name` FROM `Project` ORDER BY `Code`";
         </tr>
 
         <?php 
-          // Get instance of statement
-          $stmt = $mysqli->stmt_init();
           // Pull all the projects in
           $stmt->prepare($qGetProjects) or die("Couldn't prepare project query");
           $stmt->execute();
@@ -38,18 +55,20 @@ $qGetProjects = "SELECT `Code`, `Name` FROM `Project` ORDER BY `Code`";
             ?>
             <tr>
               <td>
-                <?php echo $row['Code'];?>
+                <?php echo trim($row['Code']);?>
               </td>
 
               <td>
-                <input type="text" class="form-control" value="<?php echo $row['Name'];?>" />
+                <input type="text" class="form-control" name="<?php echo trim($row['Code']);?>" value="<?php echo trim($row['Name']);?>" />
               </td>
             </tr>
             <?php
           }
         ?>
         <tr>
-          <td colspan="2"><button type="submit">SAVE</button></td>
+          <td colspan="2" style="text-align: right;">
+            <button type="submit" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+          </td>
         </tr>
       </table>
     </form>
