@@ -55,7 +55,8 @@ function GenerateProjectPanel($panelName, $dates, $groupBy = 'user') {
     foreach($dates as $title => $days) {
       $fixedDays = array();
       foreach ($days as $date => $hours) {
-        $dayNum = explode('-', $date)[2];
+        $exploded = explode('-', $date);
+        $dayNum = $exploded[2];
         $fixedDays[$dayNum] = $hours;
       }
       $html .= GenerateMonth($title, $fixedDays);
