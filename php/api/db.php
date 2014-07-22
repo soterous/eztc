@@ -122,7 +122,6 @@ class DB
       $prepare->execute();
     } else {
       // Create the entry
-
       $prepare = $this->db->prepare('INSERT INTO TimeEntry (ProjectId, EmployeeId, Date, Hours) VALUES (:ProjectId, :EmployeeId, :TimeEntryDate, :Hours)');
 
       $prepare->bindValue(':Hours', $hours);
@@ -134,6 +133,17 @@ class DB
     }
   }
 
+  public function getAllEmployees(){
+    return $this->query('SELECT * FROM Employee WHERE 1');
+  }
+
+  public function getAllProjects(){
+    return $this->query('SELECT * FROM Project WHERE 1');
+  }
+
+  public function getRecentProjects(){
+    return $this->query('SELECT * FROM Project WHERE 1 ORDER BY LastUpdated LIMIT 5');
+  }
 
 /***************
  DELETE BELOW ME
@@ -324,9 +334,9 @@ class DB
 
     // Create Tables
     $tables = array(
-      "CREATE TABLE 'Employee' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT CURRENT_TIME)",
-      "CREATE TABLE 'Project' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Code' TEXT, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT CURRENT_TIME)",
-      "CREATE TABLE 'TimeEntry' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'ProjectId' INTEGER NOT NULL, 'EmployeeId' INTEGER NOT NULL, 'Date' TEXT, 'Hours' TEXT, 'LastUpdated' DATETIME DEFAULT CURRENT_TIME)"
+      "CREATE TABLE 'Employee' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT datetime('now'))",
+      "CREATE TABLE 'Project' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Code' TEXT, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT datetime('now'))",
+      "CREATE TABLE 'TimeEntry' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'ProjectId' INTEGER NOT NULL, 'EmployeeId' INTEGER NOT NULL, 'Date' TEXT, 'Hours' TEXT, 'LastUpdated' DATETIME DEFAULT datetime('now'))"
     );
 
     foreach ($tables as $a) {
