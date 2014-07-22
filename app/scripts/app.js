@@ -10,5 +10,6 @@
  */
 angular
   .module('eztcApp', [
-    'ngResource'
+    'ngResource',
+    'ui.router'
   ]);
