@@ -1,0 +1,4 @@
+# Mac Problems
+.DS_STORE
+/dump.txt
+config.inc.php

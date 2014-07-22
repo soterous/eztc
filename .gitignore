@@ -1,4 +1,8 @@
-# Mac Problems
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
 .DS_STORE
-/dump.txt
-config.inc.php
+oldphp/dump.txt
+oldphp/config.inc.php
