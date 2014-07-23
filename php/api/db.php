@@ -134,15 +134,15 @@ class DB
   }
 
   public function getAllEmployees(){
-    return $this->query('SELECT * FROM Employee WHERE 1');
+    return $this->query('SELECT Id as id, Name as name, LastUpdated as lastUpdated FROM Employee WHERE 1');
   }
 
   public function getAllProjects(){
-    return $this->query('SELECT * FROM Project WHERE 1');
+    return $this->query('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated  FROM Project WHERE 1');
   }
 
   public function getRecentProjects(){
-    return $this->query('SELECT * FROM Project WHERE 1 ORDER BY LastUpdated LIMIT 5');
+    return $this->query('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated, (SELECT SUM(Hours) FROM TimeEntry WHERE ProjectId = Project.Id) as hours FROM Project WHERE 1 ORDER BY LastUpdated LIMIT 5');
   }
 
 /***************

@@ -1,10 +1,6 @@
 <?php
 require 'flight/Flight.php';
 
-Flight::route('/', function(){
-    echo 'You don\'t belong here';
-});
-
 // This is for the GM script to push to
 Flight::route('POST /update', function(){
   $json = Flight::request()->data;
@@ -31,6 +27,12 @@ Flight::route('GET /list/@table', function($table){
       echo json_encode($db->getRecentProjects());
     break;
   }
+});
+
+
+// Generic catch (LEAVE LAST)
+Flight::route('*', function(){
+    echo 'You don\'t belong here';
 });
 
 Flight::start();

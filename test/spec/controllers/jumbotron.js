@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: JumbotronctrlCtrl', function () {
 
   // load the controller's module
   beforeEach(module('eztcApp'));
 
-  var MainCtrl,
+  var JumbotronctrlCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    JumbotronctrlCtrl = $controller('JumbotronctrlCtrl', {
       $scope: scope
     });
   }));

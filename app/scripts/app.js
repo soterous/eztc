@@ -10,10 +10,16 @@
  */
 angular
   .module('eztcApp', [
+    'ngSanitize',
     'ngResource',
-    'ui.router'
+    'ui.router',
+    'ui.select'
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, uiSelectConfig) {
+
+    // Select2
+    uiSelectConfig.theme = 'bootstrap';
+
     var timeoutTime = 5000;
 
     // For any unmatched url, send to home
@@ -43,7 +49,8 @@ angular
               });
             }
           ]
-        }
+        },
+        controller: 'JumbotronCtrl'
       })
       .state('view.home', {
         url: '/view/home',
@@ -58,7 +65,10 @@ angular
               });
             }
           ]
-        }
+        },
+        controller: ['$scope', 'recentProjects', function($scope, recentProjects){
+          $scope.recentProjects = recentProjects.data;
+        }]
       });
 
 
