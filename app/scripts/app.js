@@ -29,7 +29,7 @@ angular
             function($http) {
               return $http({
                 method: 'GET',
-                url: baseApiUrl + '/employeeList.php',
+                url: baseApiUrl + '/list/employees',
                 timeout: timeoutTime
               });
             }
@@ -38,7 +38,7 @@ angular
             function($http) {
               return $http({
                 method: 'GET',
-                url: baseApiUrl + '/projectList.php',
+                url: baseApiUrl + '/list/projects',
                 timeout: timeoutTime
               });
             }
@@ -53,7 +53,7 @@ angular
             function($http) {
               return $http({
                 method: 'GET',
-                url: baseApiUrl + '/recentProjects.php',
+                url: baseApiUrl + '/list/recentprojects',
                 timeout: timeoutTime
               });
             }

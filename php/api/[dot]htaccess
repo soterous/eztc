@@ -1,3 +1,9 @@
+#Flight php rewrite
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
 #deny access to the db files
 <Files "*.sqlite3">
 Order Allow,Deny

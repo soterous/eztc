@@ -8,10 +8,10 @@ require_once 'db.php';
 $db = new DB();
 
 // Get User ID, will create user if not already in there
-$userId = $db->getUserId($_POST['employee']);
+$userId = $db->getUserId($json['employee']);
 
 // Iterate over each project and insert them into the db
-foreach ($_POST['projects'] as $project => $days){
+foreach ($json['projects'] as $project => $days){
 
   // Skip the project if it's in blacklist specified in config.php
   if(in_array($project, $GLOBALS['cfg']['projectBlacklist']))
