@@ -18,7 +18,7 @@ angular.module('eztcApp')
 
     $scope.projectTitle = projects[0].projectCode;
     $scope.groupBy = $stateParams.groupBy || 'month';
-    if ($scope.groupBy !== 'month' || $scope.groupBy !== 'user') {
+    if ($scope.groupBy !== 'month' && $scope.groupBy !== 'user') {
       $scope.groupBy = 'month';
     }
 

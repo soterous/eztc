@@ -1,10 +1,19 @@
-<h2>{{projectTitle}} Total Hours: {{totalHours}}</h2>
+<div class="row view-heading">
+  <div class="col-sm-8"><h2>{{projectTitle}}</h2></div>
+  <div class="col-sm-4 text-right"><h3>Total Hours: {{totalHours}}</h3></div>
+</div>
+
 <h4>Grouping by {{groupBy}}</h4>
 
 <div class="panel panel-info" ng-repeat="grouping in groupedData">
   <div class="panel-heading">
-    <h3 class="panel-title">{{getGroupingTitle(grouping)}} Hours: {{getGroupingTotalHours(grouping)}}</span></h3>
+    <div class="row">
+      <div class="col-sm-10 panel-title">{{getGroupingTitle(grouping)}}</div>
+      <div class="col-sm-2" style="text-align:right">Total hours: {{getGroupingTotalHours(grouping)}}</div>
+    </div>
+
   </div>
+
 
   <div ng-repeat="(title, sub) in grouping" class="calendar">
     <h3>{{formatSubTitle(title)}}</h3>

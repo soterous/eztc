@@ -16,6 +16,13 @@ $greyBorder: #DDDDDD;
   margin: 0;
 }
 
+.view-heading {
+  h1, h2, h3, h4, h5 {
+    margin-top: 0;
+    line-height: 33px;
+  }
+}
+
 .calendar {
 
   h3 {
