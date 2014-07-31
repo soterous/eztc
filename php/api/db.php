@@ -145,6 +145,46 @@ class DB
     return $this->query('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated, (SELECT SUM(Hours) FROM TimeEntry WHERE ProjectId = Project.Id) as hours FROM Project WHERE 1 ORDER BY LastUpdated LIMIT 5');
   }
 
+  public function getPotato(){
+
+    $prepare = $this->db->prepare('SELECT P.Code as projectCode, E.Name as employeeName, SUBSTR(T.Date, 1, 4) as year,
+                                   SUBSTR(T.Date, 6, 2) as month, SUBSTR(T.Date, 9, 2) as day, T.Hours as hours
+                                   FROM TimeEntry as T LEFT JOIN Employee as E ON T.EmployeeId = E.Id
+                                   LEFT JOIN Project as P ON T.ProjectId = P.Id WHERE
+                                   P.Code = :code AND T.Hours > 0');
+    $prepare->bindValue(':code', '07144.0114.OPT2.28FJ.00KK.CACL');
+
+    $prepare->execute();
+
+    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
+    var_dump($result);
+
+    /*
+
+    "SELECT `Project`.`Code`, `Employee`.`Name`, `TimeEntry`.`Date`, `TimeEntry`.`Hours`
+                    FROM `TimeEntry` LEFT JOIN `Employee` ON `TimeEntry`.`EmployeeId`=`Employee`.`Id`
+                    LEFT JOIN `Project` ON `TimeEntry`.`ProjectId` = `Project`.`Id` WHERE
+                    `Project`.`Code`= ? AND `TimeEntry`.`Hours` <> 0 ORDER BY `Employee`.`Name`, `TimeEntry`.`Date`";
+                    */
+
+  }
+
+  public function getProjectData($projectCode){
+    $prepare = $this->db->prepare('SELECT P.Code as projectCode, E.Name as employeeName, SUBSTR(T.Date, 1, 4) as year,
+                                   SUBSTR(T.Date, 6, 2) as month, SUBSTR(T.Date, 9, 2) as day, T.Hours as hours
+                                   FROM TimeEntry as T LEFT JOIN Employee as E ON T.EmployeeId = E.Id
+                                   LEFT JOIN Project as P ON T.ProjectId = P.Id WHERE
+                                   P.Code = :code AND T.Hours > 0');
+    $prepare->bindValue(':code', $projectCode);
+
+    $prepare->execute();
+
+    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+  }
+
 /***************
  DELETE BELOW ME
  ***************/
@@ -334,9 +374,9 @@ class DB
 
     // Create Tables
     $tables = array(
-      "CREATE TABLE 'Employee' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT datetime('now'))",
-      "CREATE TABLE 'Project' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Code' TEXT, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT datetime('now'))",
-      "CREATE TABLE 'TimeEntry' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'ProjectId' INTEGER NOT NULL, 'EmployeeId' INTEGER NOT NULL, 'Date' TEXT, 'Hours' TEXT, 'LastUpdated' DATETIME DEFAULT datetime('now'))"
+      "CREATE TABLE 'Employee' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT CURRENT_TIMESTAMP)",
+      "CREATE TABLE 'Project' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'Code' TEXT, 'Name' TEXT, 'LastUpdated' DATETIME DEFAULT CURRENT_TIMESTAMP)",
+      "CREATE TABLE 'TimeEntry' ('Id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'ProjectId' INTEGER NOT NULL, 'EmployeeId' INTEGER NOT NULL, 'Date' TEXT, 'Hours' TEXT, 'LastUpdated' DATETIME DEFAULT CURRENT_TIMESTAMP)"
     );
 
     foreach ($tables as $a) {

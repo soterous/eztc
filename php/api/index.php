@@ -29,10 +29,27 @@ Flight::route('GET /list/@table', function($table){
   }
 });
 
+Flight::route('GET /data/@table/@query:.+', function($table, $query, $route){
+  require_once 'config.php';
+  require_once 'db.php';
+
+  $db = new DB();
+
+  switch($table){
+    case 'project' :
+        echo 'stupid ' . $table . ' ' . $query;
+        echo var_dump($db->getProjectData(str_replace('-','.',$query)));
+    break;
+  }
+});
+
 
 // Generic catch (LEAVE LAST)
 Flight::route('*', function(){
     echo 'You don\'t belong here';
+
+    var_dump(func_get_args());
+    var_dump($_GET);
 });
 
 Flight::start();

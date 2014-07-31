@@ -14,7 +14,7 @@
     <tbody>
       <tr ng-repeat="rp in recentProjects">
         <td>{{$index + 1}}</td>
-        <td>{{rp.code}}</td>
+        <td><a ui-sref="view.project({projectCode: rp.code})">{{rp.code}}</a></td>
         <td>{{rp.hours}}</td>
       </tr>
     </tbody>

@@ -1,0 +1,76 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 Verdana;}
+{\colortbl;\red255\green255\blue255;\red38\green43\blue41;\red239\green238\blue233;}
+\margl1440\margr1440\vieww12480\viewh19840\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf0 DROP TABLE IF EXISTS `Employee`;\
+CREATE TABLE IF NOT EXISTS `Employee` (\
+\'a0\'a0`Id` int(11) NOT NULL AUTO_INCREMENT,\
+\'a0\'a0`Name` varchar(128) NOT NULL,\
+\'a0\'a0`LastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\
+\'a0\'a0PRIMARY KEY (`Id`),\
+\'a0\'a0UNIQUE KEY `Name` (`Name`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `Project`\
+--\
+\
+DROP TABLE IF EXISTS `Project`;\
+CREATE TABLE IF NOT EXISTS `Project` (\
+\'a0\'a0`Id` int(11) NOT NULL AUTO_INCREMENT,\
+\'a0\'a0`Code` varchar(32) NOT NULL,\
+\'a0\'a0`Name` varchar(128) NOT NULL,\
+\'a0\'a0`LastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\
+\'a0\'a0PRIMARY KEY (`Id`),\
+\'a0\'a0UNIQUE KEY `Code` (`Code`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Table structure for table `TimeEntry`\
+--\
+\
+DROP TABLE IF EXISTS `TimeEntry`;\
+CREATE TABLE IF NOT EXISTS `TimeEntry` (\
+\'a0\'a0`Id` int(11) NOT NULL AUTO_INCREMENT,\
+\'a0\'a0`ProjectId` int(11) NOT NULL,\
+\'a0\'a0`EmployeeId` int(11) NOT NULL,\
+\'a0\'a0`Date` date NOT NULL,\
+\'a0\'a0`Hours` tinyint(4) NOT NULL,\
+\'a0\'a0`LastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\
+\'a0\'a0PRIMARY KEY (`Id`),\
+\'a0\'a0KEY `ProjectId` (`ProjectId`),\
+\'a0\'a0KEY `EmployeeId` (`EmployeeId`)\
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;\
+\
+--\
+-- Constraints for dumped tables\
+--\
+\
+--\
+-- Constraints for table `TimeEntry`\
+--\
+ALTER TABLE `TimeEntry`\
+\'a0\'a0ADD CONSTRAINT `TimeEntry_ibfk_1` FOREIGN KEY (`ProjectId`) REFERENCES `Project` (`Id`),\
+\'a0\'a0ADD CONSTRAINT `TimeEntry_ibfk_2` FOREIGN KEY (`EmployeeId`) REFERENCES `Employee` (`Id`);\
+\
+CREATE TRIGGER employeeTimeUpdate\
+    AFTER UPDATE ON Employee \
+    BEGIN \
+      UPDATE Employee SET LastUpdated = datetime('now') WHERE Id = old.Id;\
+    END;\
+\
+\pard\pardeftab720
+
+\f1\fs26 \cf2 \cb3 CREATE TRIGGER add_date \
+\'a0 \'a0 AFTER INSERT ON Entries \
+\'a0 \'a0 BEGIN \
+\'a0 \'a0 \'a0 UPDATE Entries SET updated = datetime('now') WHERE entryID = new. entryID; \
+\'a0 \'a0 END; \
+}

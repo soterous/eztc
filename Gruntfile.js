@@ -92,7 +92,8 @@ module.exports = function (grunt) {
         options: {
           hostname: '127.0.0.1',
           port: 9001,
-          base: './php'
+          base: './php',
+          router: './api/index.php'
         }
       }
     },
