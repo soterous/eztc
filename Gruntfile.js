@@ -95,6 +95,13 @@ module.exports = function (grunt) {
           base: './php',
           router: './api/index.php'
         }
+      },
+      force: {
+        options: {
+          hostname: '<%= php.dist.options.hostname %>',
+          port: 9002,
+          base: '<%= php.dist.options.base %>'
+        }
       }
     },
 
@@ -128,7 +135,7 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
-          port: 9002,
+          port: 9003,
           middleware: function (connect, options) {
             return [
               connect.static('.tmp'),

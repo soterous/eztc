@@ -37,8 +37,8 @@ Flight::route('GET /data/@table/@query', function($table, $query){
 
   switch($table){
     case 'project' :
-        echo 'stupid ' . $table . ' ' . $query;
-        echo var_dump($db->getProjectData(str_replace('-','.',$query)));
+      // Ghetto Bandaid warning. Flight can't accept routes with periods (.) in them so we swap them to dashes (-) in js and decode them here.
+      echo json_encode($db->getProjectData(str_replace('-','.',$query)));
     break;
   }
 });
@@ -47,9 +47,6 @@ Flight::route('GET /data/@table/@query', function($table, $query){
 // Generic catch (LEAVE LAST)
 Flight::route('*', function(){
     echo 'You don\'t belong here';
-
-    var_dump(func_get_args());
-    var_dump($_GET);
 });
 
 Flight::start();

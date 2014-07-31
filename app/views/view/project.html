@@ -1,1 +1,30 @@
-{{data}}
+<h2>{{projectTitle}} Total Hours: {{totalHours}}</h2>
+<h4>Grouping by {{groupBy}}</h4>
+
+<div class="panel panel-info" ng-repeat="grouping in groupedData">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{getGroupingTitle(grouping)}} Hours: {{getGroupingTotalHours(grouping)}}</span></h3>
+  </div>
+
+  <div ng-repeat="(title, sub) in grouping" class="calendar">
+    <h3>{{formatSubTitle(title)}}</h3>
+
+    <div class="row-container">
+      <div class="day header" ng-class="{true: 'last'}[$last]" ng-repeat="date in daysInMonthRepeater(sub[0].month, sub[0].year) track by $index">
+        {{$index + 1}}
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="row-container">
+      <div class="day" ng-class="{true: 'last'}[$last]" ng-repeat="date in daysInMonthRepeater(sub[0].month, sub[0].year) track by $index">
+        {{getHours($index + 1, sub)}}
+      </div>
+      <div class="clear"></div>
+    </div>
+
+  </div>
+
+
+
+</div>

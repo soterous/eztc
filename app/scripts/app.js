@@ -66,24 +66,27 @@ angular
             }
           ]
         },
-        controller: ['$scope', 'recentProjects', function($scope, recentProjects){
-          $scope.recentProjects = recentProjects.data;
-        }]
+        controller: ['$scope', 'recentProjects',
+          function($scope, recentProjects) {
+            $scope.recentProjects = recentProjects.data;
+          }
+        ]
       })
       .state('view.project', {
-        url: '/view/project/:projectCode',
+        url: '/view/project/:projectCode/:groupBy',
         templateUrl: '/views/view/project.html',
         resolve: {
-          projectData: ['$http', '$stateParams', function($http, $stateParams){
-            return $http({
-              method: 'GET',
-              url: baseApiUrl + '/data/project/' + $stateParams.projectCode
-            });
-          }]
+          projectData: ['$http', '$stateParams',
+            function($http, $stateParams) {
+              return $http({
+                method: 'GET',
+                // Ghetto Bandaid warning. Flight can't accept routes with periods (.) in them so we swap them to dashes (-) here and decode in php
+                url: baseApiUrl + '/data/project/' + $stateParams.projectCode.replace(/\./g, '-')
+              });
+            }
+          ]
         },
-        controller: ['$scope', 'projectData', function($scope, projectData){
-          $scope.data = projectData.data;
-        }]
+        controller: 'ProjectCtrl'
       });
 
 
