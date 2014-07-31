@@ -15,7 +15,7 @@ namespace flight\template;
  */
 class View {
     /**
-     * Location of view templates.
+     * Locaton of view templates.
      *
      * @var string
      */
@@ -27,13 +27,6 @@ class View {
      * @var array
      */
     protected $vars = array();
-
-    /**
-     * Template file.
-     *
-     * @var string
-     */
-    private $template;
 
     /**
      * Constructor.
@@ -103,10 +96,10 @@ class View {
      * @throws \Exception If template not found
      */
     public function render($file, $data = null) {
-        $this->template = $this->getTemplate($file);
+        $template = $this->getTemplate($file);
 
-        if (!file_exists($this->template)) {
-            throw new \Exception("Template file not found: {$this->template}.");
+        if (!file_exists($template)) {
+            throw new \Exception("Template file not found: $template.");
         }
 
         if (is_array($data)) {
@@ -115,7 +108,7 @@ class View {
 
         extract($this->vars);
 
-        include $this->template;
+        include $template;
     }
 
     /**
@@ -129,7 +122,9 @@ class View {
         ob_start();
 
         $this->render($file, $data);
-        $output = ob_get_clean();
+        $output = ob_get_contents();
+
+        ob_end_clean();
 
         return $output;
     }

@@ -42,11 +42,5 @@ class Flight {
 
         return \flight\core\Dispatcher::invokeMethod(array(self::$engine, $name), $params);
     }
-
-    /**
-     * @return object Application instance
-     */
-    public static function app() {
-        return self::$engine;
-    }
 }
+

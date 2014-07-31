@@ -29,7 +29,7 @@ Flight::route('GET /list/@table', function($table){
   }
 });
 
-Flight::route('GET /data/@table/@query:.+', function($table, $query, $route){
+Flight::route('GET /data/@table/@query', function($table, $query){
   require_once 'config.php';
   require_once 'db.php';
 
