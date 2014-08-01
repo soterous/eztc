@@ -25,17 +25,18 @@ angular
     // For any unmatched url, send to home
     $urlRouterProvider.otherwise('/view/home');
 
-    var baseApiUrl = '/api';
+    // No pre-slash only trailing plz
+    var baseApiUrl = 'api/';
 
     $stateProvider
       .state('view', {
-        templateUrl: '/views/view/jumbotron.html',
+        templateUrl: 'views/view/jumbotron.html',
         resolve: {
           employeeList: ['$http',
             function($http) {
               return $http({
                 method: 'GET',
-                url: baseApiUrl + '/list/employees',
+                url: baseApiUrl + 'list/employees',
                 timeout: timeoutTime
               });
             }
@@ -44,7 +45,7 @@ angular
             function($http) {
               return $http({
                 method: 'GET',
-                url: baseApiUrl + '/list/projects',
+                url: baseApiUrl + 'list/projects',
                 timeout: timeoutTime
               });
             }
@@ -54,13 +55,13 @@ angular
       })
       .state('view.home', {
         url: '/view/home',
-        templateUrl: '/views/view/home.html',
+        templateUrl: 'views/view/home.html',
         resolve: {
           recentProjects: ['$http',
             function($http) {
               return $http({
                 method: 'GET',
-                url: baseApiUrl + '/list/recentprojects',
+                url: baseApiUrl + 'list/recentprojects',
                 timeout: timeoutTime
               });
             }
@@ -74,14 +75,14 @@ angular
       })
       .state('view.project', {
         url: '/view/project/:projectCode/:groupBy',
-        templateUrl: '/views/view/project.html',
+        templateUrl: 'views/view/project.html',
         resolve: {
           projectData: ['$http', '$stateParams',
             function($http, $stateParams) {
               return $http({
                 method: 'GET',
                 // Ghetto Bandaid warning. Flight can't accept routes with periods (.) in them so we swap them to dashes (-) here and decode in php
-                url: baseApiUrl + '/data/project/' + $stateParams.projectCode.replace(/\./g, '-')
+                url: baseApiUrl + 'data/project/' + $stateParams.projectCode.replace(/\./g, '-')
               });
             }
           ]

@@ -137,12 +137,17 @@ class DB
     return $this->query('SELECT Id as id, Name as name, LastUpdated as lastUpdated FROM Employee WHERE 1');
   }
 
-  public function getAllProjects(){
-    return $this->query('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated  FROM Project WHERE 1');
+  public function getAllProjects($minHours = 0){
+    $prepare = $this->db->prepare('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated, (SELECT SUM(Hours) FROM TimeEntry WHERE ProjectId = Project.Id) as hours FROM Project WHERE hours > :minHours; ORDER BY name, code');
+    $prepare->bindValue(':minHours', $minHours, PDO::PARAM_INT);
+
+    $prepare->execute();
+
+    return $prepare->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function getRecentProjects(){
-    return $this->query('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated, (SELECT SUM(Hours) FROM TimeEntry WHERE ProjectId = Project.Id) as hours FROM Project WHERE 1 ORDER BY LastUpdated LIMIT 5');
+    return $this->query('SELECT Id as id, Code as code, Name as name, LastUpdated as lastUpdated, (SELECT SUM(Hours) FROM TimeEntry WHERE ProjectId = Project.Id) as hours FROM Project WHERE hours > 0 ORDER BY LastUpdated LIMIT 5');
   }
 
   public function getProjectData($projectCode){
