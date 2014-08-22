@@ -8,7 +8,7 @@
  * Controller of the eztcApp
  */
 angular.module('eztcApp')
-  .controller('JumbotronCtrl', function($scope, employeeList, projectList) {
+  .controller('JumbotronCtrl', function($scope, employeeList, projectList, $state) {
     $scope.employeeList = employeeList.data;
     $scope.projectList = projectList.data;
 
@@ -33,7 +33,9 @@ angular.module('eztcApp')
 
       // Reset the other dropdown
       $scope.person.selected = undefined;
-      console.log('project selected ' + typeof $scope.person.selected);
+
+      // Go
+      $state.go('view.project', {projectCode: $scope.project.selected.code});
     });
 
   });

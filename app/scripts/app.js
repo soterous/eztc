@@ -20,6 +20,7 @@ angular
     // Select2
     uiSelectConfig.theme = 'bootstrap';
 
+    // Requet timeout
     var timeoutTime = 5000;
 
     // For any unmatched url, send to home
