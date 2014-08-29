@@ -1,8 +1,12 @@
 // bower:scss
 // endbower
 
+///////////////
+// Color Defs
 $greyBorder: #DDDDDD;
 
+///////////////
+// Common
  body {
   padding-top: 70px;
 }
@@ -23,6 +27,12 @@ $greyBorder: #DDDDDD;
   }
 }
 
+.fat {
+  padding-bottom: 20px;
+}
+
+///////////////
+// Calendar
 .calendar {
 
   h3 {

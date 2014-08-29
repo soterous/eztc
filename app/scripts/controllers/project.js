@@ -30,15 +30,17 @@ angular.module('eztcApp')
     var groupedData = {};
 
     // Do the grouping by looping through each project line
-    // Grouping should end up looking something liek this
+    // Grouping should end up looking something like this
     /*
       2014-07: {
-        JohnSmith: [row, row, row],
-        BobJoe: [row, row, row]
+        JohnSmith: [{"projectCode":"123","employeeName":"John Smith","year":"2014","month":"07","day":"02","yearMonth":"2014-07","hours":"8"}, ...],
+        BobJoe: [{"projectCode":"123","employeeName":"John Smith","year":"2014","month":"07","day":"02","yearMonth":"2014-07","hours":"8"}, ...],
+        ...
       }
       or
       JohnSmith: {
-        2014
+        "2014-07": [{"projectCode":"123","employeeName":"John Smith","year":"2014","month":"07","day":"02","yearMonth":"2014-07","hours":"8"}, ...],
+        ...
       }
     */
     angular.forEach(projects, function(row) {
@@ -113,13 +115,21 @@ angular.module('eztcApp')
 
     // This is so we can use an ng-repeat
     $scope.daysInMonthRepeater = function(month, year) {
-      var daysInMonth = getDaysInMonth(month, year);
+      if(angular.isDefined(month) && angular.isDefined(year)){
+        var daysInMonth = getDaysInMonth(month, year);
+        
+        return new Array(daysInMonth);
+      }
 
-      return new Array(daysInMonth);
+      return new Array(0);
     };
 
     // given the day, return the number of hours, or 0 if none
     $scope.getHours = function(day, rows) {
+    
+      if(!angular.isDefined(day) || !angular.isDefined(rows)){
+        return;
+      }
 
       for (var i = 0; i < rows.length; i++) {
         var row = rows[i];
@@ -131,6 +141,17 @@ angular.module('eztcApp')
 
       return 0;
     };
+    
+    // Gets the total hours for the passed sub. This is what displays the month totals in each month.
+    $scope.getSubTotalHours = function(sub) {
+      var total = 0;
+      
+      angular.forEach(sub, function(key){
+        total += +key.hours;
+      });
+      
+      return total;
+    }
 
 
 
