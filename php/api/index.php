@@ -40,6 +40,9 @@ Flight::route('GET /data/@table/@query', function($table, $query){
       // Ghetto Bandaid warning. Flight can't accept routes with periods (.) in them so we swap them to dashes (-) in js and decode them here.
       echo json_encode($db->getProjectData(str_replace('-','.',$query)));
     break;
+    case 'employee' :
+      echo json_encode($db->getEmployeeData($query));
+    break;
   }
 });
 

@@ -9,8 +9,9 @@
 </div>
 
 <hr>
-
-<div class="panel panel-info" ng-repeat="grouping in groupedData">
+{{groupedData}}
+<div class="panel panel-info" ng-repeat="grouping in groupedData"> 
+  {{grouping}}
   <div class="panel-heading">
     <div class="row">
       <div class="col-sm-10 panel-title">{{getGroupingTitle(grouping)}}</div>

@@ -164,6 +164,11 @@ class DB
 
     return $result;
   }
+  
+  public function getEmployeeData($employeeName){
+    return 'not yet';
+    
+  }
 
 /***************
  DELETE BELOW ME
