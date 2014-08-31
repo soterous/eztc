@@ -41,7 +41,7 @@ Flight::route('GET /data/@table/@query', function($table, $query){
       echo json_encode($db->getProjectData(str_replace('-','.',$query)));
     break;
     case 'employee' :
-      echo json_encode($db->getEmployeeData($query));
+      echo json_encode($db->getEmployeeData(str_replace('-','.',$query)));
     break;
   }
 });

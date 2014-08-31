@@ -164,14 +164,26 @@ class DB
 
     return $result;
   }
-  
+
   public function getEmployeeData($employeeName){
-    return 'not yet';
-    
+    // This query is exactly the same as getProjectData except for the last line
+    $prepare = $this->db->prepare('SELECT P.Code as projectCode, E.Name as employeeName, SUBSTR(T.Date, 1, 4) as year,
+                                   SUBSTR(T.Date, 6, 2) as month, SUBSTR(T.Date, 9, 2) as day, SUBSTR(T.Date, 1, 7) as yearMonth, T.Hours as hours
+                                   FROM TimeEntry as T LEFT JOIN Employee as E ON T.EmployeeId = E.Id
+                                   LEFT JOIN Project as P ON T.ProjectId = P.Id WHERE
+                                   E.Name = :name AND T.Hours > 0 ORDER BY T.Date');
+    $prepare->bindValue(':name', $employeeName);
+
+    $prepare->execute();
+
+    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+
   }
 
 /***************
- DELETE BELOW ME
+ DELETE BELOW ME ! LOOK FOR THE STOP !
  ***************/
   public function getAllEntries($stoneId){
     $query = 'SELECT serial, slabCount, finishType, slabSize, (SELECT url FROM images WHERE images.id = stoneEntries.thumbId) as thumb, (SELECT url FROM images WHERE images.id = stoneEntries.imageId) as image FROM stoneEntries WHERE stoneId = :id';

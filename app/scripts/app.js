@@ -74,6 +74,22 @@ angular
           }
         ]
       })
+      .state('view.details', {
+        url: '/view/details/:view/:id/:groupBy',
+        templateUrl: 'views/view/details.html',
+        controller: 'DetailsCtrl',
+        resolve: {
+          viewData: ['$http', '$stateParams',
+            function($http, $stateParams) {
+              return $http({
+                method: 'GET',
+                // Ghetto Bandaid warning. Flight can't accept routes with periods (.) in them so we swap them to dashes (-) here and decode in php (prob a limitation of the dev environment)
+                url: baseApiUrl + 'data/' + $stateParams.view + '/' + $stateParams.id.replace(/\./g, '-')
+              });
+            }
+          ]
+        }
+      })
       .state('view.project', {
         url: '/view/project/:projectCode/:groupBy',
         templateUrl: 'views/view/project.html',
@@ -90,48 +106,5 @@ angular
         },
         controller: 'ProjectCtrl'
       });
-
-
-    /*
-          .state('stones', {
-            templateUrl: '/views/stones.html',
-            resolve: {
-              stones: ['$http',
-                function($http) {
-                  return $http({
-                    method: 'GET',
-                    url: baseApiUrl + '/stones.php',
-                    timeout: timeoutTime
-                  });
-                }
-              ]
-            },
-            controller: 'StonesCtrl'
-          })
-          .state('stones.items', {
-            url: '/stones/{page:[1-9]+[0-9]*}',
-            templateUrl: '/views/stones.items.html',
-            controller: 'StonesItemsCtrl'
-          })
-          .state('stones.itemdetails', {
-            url: '/details/:stoneId',
-            templateUrl: '/views/stones.itemdetails.html',
-            controller: 'ItemDetailsCtrl',
-            resolve: {
-              stoneDetails: ['$http', '$stateParams',
-                function($http, $stateParams) {
-                  return $http({
-                    method: 'GET',
-                    url: baseApiUrl + '/details.php',
-                    params: {
-                      code: $stateParams.stoneId
-                    },
-                    timeout: timeoutTime
-                  });
-                }
-              ]
-            }
-          });
-          */
 
   });
