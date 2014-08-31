@@ -8,7 +8,7 @@
  * Controls the jumbotron dropdowns
  */
 angular.module('eztcApp')
-  .controller('JumbotronCtrl', function($scope, employeeList, projectList, $state) {
+  .controller('JumbotronCtrl', function($scope, employeeList, projectList, $state, $rootScope) {
     $scope.employeeList = employeeList.data;
     $scope.projectList = projectList.data;
 
@@ -16,7 +16,7 @@ angular.module('eztcApp')
     $scope.project = {};
 
     $scope.$watch('person.selected', function() {
-      if(typeof $scope.person.selected === 'undefined') {
+      if (typeof $scope.person.selected === 'undefined') {
         return;
       }
 
@@ -24,11 +24,14 @@ angular.module('eztcApp')
       $scope.project.selected = undefined;
 
       // Go
-      $state.go('view.details', {view: 'employee', id: $scope.person.selected.name});
+      $state.go('view.details', {
+        view: 'employee',
+        id: $scope.person.selected.name
+      });
     });
 
     $scope.$watch('project.selected', function() {
-      if(typeof $scope.project.selected === 'undefined') {
+      if (typeof $scope.project.selected === 'undefined') {
         return;
       }
 
@@ -36,7 +39,19 @@ angular.module('eztcApp')
       $scope.person.selected = undefined;
 
       // Go
-      $state.go('view.details', {view: 'project', id: $scope.project.selected.code});
+      $state.go('view.details', {
+        view: 'project',
+        id: $scope.project.selected.code
+      });
     });
+
+    // Listen for navigation back to home to reset both dropdowns
+    $rootScope.$on('$stateChangeStart',
+      function(event, toState) {
+        if(toState.name === 'view.home') {
+          $scope.project.selected = undefined;
+          $scope.person.selected = undefined;
+        }
+      });
 
   });

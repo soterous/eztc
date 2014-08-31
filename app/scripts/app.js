@@ -89,22 +89,6 @@ angular
             }
           ]
         }
-      })
-      .state('view.project', {
-        url: '/view/project/:projectCode/:groupBy',
-        templateUrl: 'views/view/project.html',
-        resolve: {
-          projectData: ['$http', '$stateParams',
-            function($http, $stateParams) {
-              return $http({
-                method: 'GET',
-                // Ghetto Bandaid warning. Flight can't accept routes with periods (.) in them so we swap them to dashes (-) here and decode in php (prob a limitation of the dev environment)
-                url: baseApiUrl + 'data/project/' + $stateParams.projectCode.replace(/\./g, '-')
-              });
-            }
-          ]
-        },
-        controller: 'ProjectCtrl'
       });
 
   });
