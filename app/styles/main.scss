@@ -32,6 +32,20 @@ $greyBorder: #DDDDDD;
 }
 
 ///////////////
+// Navbar
+.navbar-brand {
+  text-align: center;
+
+  span {
+    display: block;
+    line-height: 0.6em;
+    font-size: 0.6em;
+    padding-top: 4px;
+    color: lighten(#5E5E5E, 30%);
+  }
+}
+
+///////////////
 // Calendar
 .calendar {
 
