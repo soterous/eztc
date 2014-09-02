@@ -7,6 +7,24 @@ Flight::route('POST /update', function(){
   require 'update.php';
 });
 
+// This route is for resolving the GM script.
+// this route will not work in dev because of an issue with the php internal server
+Flight::route('GET /gm/@scriptName', function($scriptName){
+  switch($scriptName){
+    case 'eztc.user.js':
+      include 'userscripts/eztc.user.php';
+      break;
+    case 'eztc.meta.js':
+      include 'userscripts/eztc.meta.php';
+      break;
+    default:
+      return;
+  }
+
+  // Send JS headers so this thing works
+  Flight::response()->header('Content-Type', 'application/javascript');
+});
+
 // Returns contents of the specified tables
 Flight::route('GET /list/@table', function($table){
   require_once 'config.php';

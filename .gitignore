@@ -7,3 +7,4 @@ bower_components
 oldphp/dump.txt
 oldphp/config.inc.php
 *.sqlite3
+php/api/userscripts/override.php
