@@ -26,7 +26,7 @@ angular.module('eztcApp')
         $scope.groupBy = $stateParams.groupBy;
         if ($scope.groupBy !== 'project' && $scope.groupBy !== 'month') {
           $stateParams.groupBy = $scope.groupBy = 'project';
-          $state.transitionTo('view.details', $stateParams);
+          $state.go('view.details', $stateParams, {reload: true});
         }
 
       } else if (viewType === 'project') {
@@ -37,7 +37,7 @@ angular.module('eztcApp')
         $scope.groupBy = $stateParams.groupBy;
         if ($scope.groupBy !== 'month' && $scope.groupBy !== 'employee') {
           $stateParams.groupBy = $scope.groupBy = 'month';
-          $state.transitionTo('view.details', $stateParams);
+          $state.go('view.details', $stateParams, {reload: true});
         }
 
       } else {
