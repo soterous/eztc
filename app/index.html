@@ -30,12 +30,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">EZTC<span>\ˈē-zē tē sē\</span></a>
+          <a class="navbar-brand" ui-sref="view.home">EZTC<span>\ˈē-zē tē sē\</span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li ui-sref-active="active"><a ui-sref="view.home">Home</a></li>
             <li router-state-eq="{state:'view.details', params:{view:'project'}, css:{true:'active', false:'hidden'}}"><a>Project</a></li>
+            <li router-state-eq="{state:'view.details', params:{view:'employee'}, css:{true:'active', false:'hidden'}}"><a>Employee</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="api/gm/eztc.user.js">Get the Script</a></li>
