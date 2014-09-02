@@ -3,10 +3,12 @@
 $scriptVersion = '1.3';
 $gm_include = 'https://*/DeltekTC/TimeCollection.msv';
 
-// http://css-tricks.com/snippets/php/get-current-page-url/
 function getUrlBase(){
-  $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
-  $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
+  $url  = @( $_SERVER['HTTPS'] != 'on' ) ? 'http://'.$_SERVER['SERVER_NAME'] :  'https://'.$_SERVER['SERVER_NAME'];
+
+  if( !(strpos($url,'http:') !== false && $_SERVER['SERVER_PORT'] == 80) && !(strpos($url,'https:') !== false && $_SERVER['SERVER_PORT'] == 443) ) {
+    $url .= ':'.$_SERVER['SERVER_PORT'];
+  }
 
   return $url;
 }
