@@ -35,7 +35,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li ui-sref-active="active"><a ui-sref="view.home">Home</a></li>
-            <li><a>Nope</a></li>
+            <li router-state-eq="{state:'view.details', params:{view:'project'}, css:{true:'active', false:'hidden'}}"><a>Project</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="api/gm/eztc.user.js">Get the Script</a></li>
@@ -78,6 +78,7 @@
         <script src="scripts/controllers/details.js"></script>
         <script src="scripts/filters/month.js"></script>
         <script src="scripts/filters/capitalize.js"></script>
+        <script src="scripts/directives/routerstateeq.js"></script>
         <!-- endbuild -->
 </body>
 </html>

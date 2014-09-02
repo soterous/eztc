@@ -46,7 +46,7 @@ angular.module('eztcApp')
     });
 
     // Listen for navigation back to home to reset both dropdowns
-    $rootScope.$on('$stateChangeStart',
+    $rootScope.$on('$stateChangeSuccess',
       function(event, toState) {
         if(toState.name === 'view.home') {
           $scope.project.selected = undefined;
