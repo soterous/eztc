@@ -14,7 +14,7 @@ include 'common.php';
 // ==/UserScript==
 
 // Config
-var eztcServerUrl = <?php getUrlBase() . str_replace('index.php', 'update', $_SERVER['PHP_SELF']); ?>
+var eztcServerUrl = '<?php getUrlBase() . str_replace('index.php', 'update', $_SERVER['PHP_SELF']); ?>';
 
 
 //////////////////// DO NOT EDIT PAST THIS LINE ////////////////////
