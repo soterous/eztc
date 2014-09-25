@@ -1,6 +1,6 @@
 <?php
 
-$scriptVersion = '1.3';
+$scriptVersion = '1.4';
 $gm_include = 'https://*/DeltekTC/TimeCollection.msv';
 
 function getUrlBase(){

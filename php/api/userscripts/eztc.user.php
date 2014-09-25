@@ -166,7 +166,7 @@ function pushTimesheet() {
         projects[projectString][date] = 0;
 
       // get the time from the cell and verify it's not blank
-      var cellTime = parseInt($(this).text()) || 0;
+      var cellTime = parseFloat($(this).text()) || 0;
 
       // Save the time
       projects[projectString][date] += cellTime;
